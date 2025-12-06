@@ -1,0 +1,193 @@
+/* mypage.css */
+
+/* 1. 기본 설정 (메인과 동일한 폰트) */
+* { 
+    margin: 0; padding: 0; box-sizing: border-box; 
+    font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif; /* 폰트 통일 */
+    list-style: none; text-decoration: none; color: inherit; 
+}
+
+body { 
+    background-color: #f5f5f5; 
+    display: flex; justify-content: center; min-height: 100vh; 
+}
+
+/* 1440px 메인 컨테이너 */
+.inner { 
+    width: 1440px; 
+    background-color: white; 
+    padding: 0 50px; 
+    box-shadow: 0 0 20px rgba(0,0,0,0.05); 
+    position: relative; 
+    overflow-x: hidden; 
+}
+
+/* =========================================
+   2. 헤더 디자인 (main.css 코드 100% 복사)
+   ========================================= */
+header { display: flex; flex-direction: column; background: white; }
+
+/* 상단 로그인 바 */
+.top-bar {
+    width: 1440px;
+    margin-left: -50px; /* ★중요: 패딩 무시하고 꽉 차게 */
+    padding: 0 50px;
+    height: 40px;
+    border-bottom: 1px solid #bbb; /* 테두리 색상 통일 */
+    background-color: #fff;
+    display: flex; justify-content: flex-end; align-items: center;
+    font-size: 13px; color: #666;
+}
+.top-bar a { padding: 0 10px; }
+.top-bar .divider { color: #ccc; font-size: 10px; }
+
+/* 메인 헤더 (로고, 메뉴, 검색창) */
+.header-content {
+    width: 1440px; 
+    margin-left: -50px; 
+    padding: 0 50px;    
+    height: 110px;
+    border-bottom: 1px solid #bbb; /* 테두리 색상 통일 */
+    background-color: #fff;
+    display: flex; justify-content: space-between; align-items: center; 
+}
+
+/* 로고 영역 */
+.logo-area { display: flex; align-items: center; gap: 15px; }
+.logo-img { height: 80px; width: auto; }
+.site-title {
+    color: #2252EE; font-size: 32px; font-weight: 600; 
+    letter-spacing: 0px; text-transform: uppercase; margin-top: 4px; 
+}
+
+/* GNB 메뉴 */
+.gnb { display: flex; gap: 120px; font-weight: bold; font-size: 18px; color: #333; }
+.gnb a:hover { color: #2252EE !important; cursor: pointer; }
+
+/* 검색창 */
+.search-area {
+    background: rgba(0,0,0,0.08); 
+    padding: 12px 20px; 
+    border-radius: 30px;
+    display: flex; align-items: center; 
+    width: 320px; flex-shrink: 0; 
+}
+.search-area input { background: transparent; border: none; outline: none; width: 100%; font-size: 14px; }
+.search-area i { color: #666; font-size: 18px; }
+
+/* 3. 마이페이지 상단 */
+.mypage-content { width: 100%; max-width: 1200px; margin: 0 auto; padding: 50px 20px 100px 20px; min-height: 800px; }
+.page-title { font-size: 28px; font-weight: 500; margin-bottom: 30px; }
+input[name="tab"] { display: none; }
+
+.dashboard-box { border: 1px solid #cce4ff; border-radius: 12px; padding: 30px 40px; background-color: #fff; margin-bottom: 50px; box-shadow: 0 4px 10px rgba(0,0,0,0.02); }
+.user-info-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid #eee; padding-bottom: 20px; margin-bottom: 30px; }
+.user-profile { font-size: 16px; display: flex; align-items: center; gap: 10px; color: #555; }
+.user-profile i { font-size: 32px; color: #aaa; }
+.user-email { font-weight: 700; color: #333; }
+.edit-btn { padding: 6px 14px; background: #eee; border: none; border-radius: 4px; font-size: 13px; cursor: pointer; }
+
+.stats-container { display: flex; padding: 0 40px; }
+.stats-group { flex: 1; text-align: center; }
+.stats-group h4 { text-align: left; font-size: 13px; color: #888; margin-bottom: 15px; font-weight: 600; }
+.circles { display: flex; justify-content: space-around; }
+.circle-item { cursor: pointer; display: flex; flex-direction: column; align-items: center; transition: 0.2s; }
+.circle { width: 60px; height: 60px; border-radius: 50%; border: 1px solid #ddd; display: flex; justify-content: center; align-items: center; font-size: 20px; font-weight: 600; color: #555; margin-bottom: 8px; background: #fff; }
+.circle-item p { font-size: 13px; color: #666; margin: 0; }
+.circle-item:hover .circle { border-color: #93DFDD; }
+.vertical-line { width: 1px; background-color: #eee; margin: 0 30px; }
+
+/* 4. 탭 전환 로직 */
+#tab1:checked ~ .dashboard-box .btn-resume .circle,
+#tab2:checked ~ .dashboard-box .btn-interest .circle,
+#tab3:checked ~ .dashboard-box .btn-recommend .circle,
+#tab4:checked ~ .dashboard-box .btn-filter .circle,
+#tab5:checked ~ .dashboard-box .btn-qna .circle {
+    border-color: #93DFDD; color: #93DFDD; border-width: 2px; background-color: #faffff;
+}
+#tab1:checked ~ .dashboard-box .btn-resume p,
+#tab2:checked ~ .dashboard-box .btn-interest p,
+#tab3:checked ~ .dashboard-box .btn-recommend p,
+#tab4:checked ~ .dashboard-box .btn-filter p,
+#tab5:checked ~ .dashboard-box .btn-qna p {
+    color: #93DFDD; font-weight: 800;
+}
+
+.tab-content { display: none; }
+#tab-default:checked ~ .content-area .content-default { display: block; }
+#tab1:checked ~ .content-area .content-resume { display: block; }
+#tab2:checked ~ .content-area .content-interest { display: block; }
+#tab3:checked ~ .content-area .content-recommend { display: block; }
+#tab4:checked ~ .content-area .content-filter { display: block; }
+#tab5:checked ~ .content-area .content-qna { display: block; }
+
+
+/* 5. 컨텐츠 디자인 */
+.tab-content h3 { font-size: 20px; font-weight: 700; margin-bottom: 15px; color: #333; }
+.section-line { border: 0; height: 2px; background: #333; margin-bottom: 20px; }
+
+/* 이력서 */
+.resume-list { display: flex; flex-direction: column; gap: 15px; }
+.resume-card { border: 1px solid #bce0fd; border-radius: 10px; padding: 25px; background: #fff; position: relative; }
+.resume-card h4 { font-size: 18px; margin-bottom: 10px; color: #222; }
+.resume-card ul { list-style: disc; padding-left: 20px; font-size: 14px; line-height: 1.6; color: #555; }
+.card-btns { position: absolute; right: 25px; bottom: 25px; }
+.card-btns button { padding: 5px 10px; border: 1px solid #ddd; background: #fff; font-size: 12px; cursor: pointer; }
+.btn-add-area { text-align: right; margin-top: 20px; }
+.btn-add-resume { background: #90e0ef; color: white; border: none; padding: 10px 20px; border-radius: 4px; font-weight: bold; cursor: pointer; }
+
+/* 관심기업 */
+.interest-list { display: flex; flex-direction: column; gap: 15px; }
+.interest-card { border: 1px solid #eee; border-radius: 10px; padding: 20px; display: flex; align-items: center; }
+.comp-logo { width: 80px; margin-right: 20px; }
+.comp-logo img { width: 100%; }
+.comp-info { width: 180px; }
+.comp-info h4 { font-size: 16px; font-weight: 800; margin-bottom: 5px; }
+.comp-info p { font-size: 13px; color: #888; }
+.comp-desc { flex-grow: 1; font-size: 13px; color: #666; }
+.comp-like { color: #555; font-size: 13px; font-weight: 600; }
+.comp-like i { color: #ff4d4d; margin-right: 5px; }
+
+/* 기업추천 */
+.comp-rec-table { width: 100%; border-collapse: collapse; text-align: center; border-top: 1px solid #333; margin-bottom: 20px; }
+.comp-rec-table th { background: #eee; padding: 15px 0; border-bottom: 1px solid #ddd; font-weight: 700; color: #333; font-size: 14px; }
+.comp-rec-table td { padding: 20px 0; border-bottom: 1px solid #eee; font-size: 14px; color: #555; }
+.comp-rec-table td.subject { text-align: left; padding-left: 20px; font-weight: 500; }
+.btn-apply { background: #fff; border: 1px solid #ccc; padding: 5px 15px; font-size: 12px; cursor: pointer; border-radius: 4px; }
+.btn-apply:hover { background: #f5f5f5; }
+
+/* 추천정보 */
+.recommend-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; margin-bottom: 40px; }
+.rec-card { cursor: pointer; }
+.rec-card .poster-box { height: 180px; background-color: #eef6fc; border-radius: 8px; display: flex; justify-content: center; align-items: center; font-size: 18px; font-weight: bold; color: #2252EE; margin-bottom: 10px; }
+.rec-card p { font-size: 14px; color: #333; line-height: 1.4; font-weight: 500; }
+
+/* ★ 복지 선호도 (이미지 디자인 적용 + 별점) */
+.welfare-table-box { border: 1px solid #ddd; border-radius: 8px; background-color: #fff; padding: 0; }
+.welfare-row { display: flex; border-bottom: 1px solid #eee; padding: 25px 30px; align-items: flex-start; }
+.welfare-row.last { border-bottom: none; }
+.w-category { width: 150px; font-size: 16px; font-weight: 700; color: #999; padding-top: 5px; }
+.w-items { flex-grow: 1; display: grid; grid-template-columns: 1fr 1fr; row-gap: 15px; column-gap: 50px; }
+.w-item { display: flex; justify-content: space-between; align-items: center; max-width: 300px; }
+.w-item span { font-size: 14px; font-weight: 600; color: #333; }
+
+/* 별점 스타일 */
+.stars { display: flex; gap: 3px; cursor: pointer; }
+.stars i { font-style: normal; font-size: 20px; color: #ddd; } /* 기본 회색 */
+.stars i.active { color: #2252EE; } /* 클릭 시 파란색 */
+
+/* 1:1 문의 */
+.empty-qna { text-align: center; padding: 50px; color: #999; }
+.btn-go-qna { margin-top: 20px; padding: 10px 20px; background: #2252EE; color: #fff; border: none; border-radius: 4px; cursor: pointer; }
+
+/* 페이지네이션 */
+.pagination-simple { display: flex; justify-content: center; gap: 15px; margin-top: 40px; margin-bottom: 20px; }
+.pagination-simple a { display: inline-block; padding: 5px; font-size: 14px; color: #888; text-decoration: none; border: none; background: none; font-weight: 500; }
+.pagination-simple a:hover { color: #222; font-weight: 800; }
+.pagination-simple a.active { color: #222; font-weight: 900; text-decoration: underline; }
+
+/* 4. 푸터 */
+footer { background-color: #e9e9e9; padding: 40px 50px; margin: 0 -50px; margin-top: auto; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+.f-links a { font-size: 13px; margin-right: 25px; font-weight: bold; color: #555; }
+.f-sns i { margin-left: 20px; font-size: 24px; color: #777; cursor: pointer; }

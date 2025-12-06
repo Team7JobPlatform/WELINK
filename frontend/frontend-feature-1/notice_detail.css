@@ -1,0 +1,103 @@
+/* notice_detail.css - 헤더/푸터 통일 + 상세페이지 디자인 */
+
+/* 1. 기본 설정 */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif; list-style: none; text-decoration: none; color: inherit; }
+body { background-color: #f5f5f5; display: flex; justify-content: center; min-height: 100vh; }
+.inner { width: 1440px; background-color: white; padding: 0 50px; box-shadow: 0 0 20px rgba(0,0,0,0.05); position: relative; overflow-x: hidden; }
+
+/* 2. 헤더 디자인 (Q&A와 동일) */
+header { display: flex; flex-direction: column; background: white; }
+.top-bar { width: 1440px; margin-left: -50px; padding: 0 50px; height: 40px; border-bottom: 1px solid #bbb; background-color: #fff; display: flex; justify-content: flex-end; align-items: center; font-size: 13px; color: #666; }
+.top-bar a { padding: 0 10px; }
+.top-bar .divider { color: #ccc; font-size: 10px; }
+.header-content { width: 1440px; margin-left: -50px; padding: 0 50px; height: 110px; border-bottom: 1px solid #bbb; background-color: #fff; display: flex; justify-content: space-between; align-items: center; }
+.logo-area { display: flex; align-items: center; gap: 15px; }
+.logo-img { height: 80px; width: auto; }
+.site-title { color: #2252EE; font-size: 32px; font-weight: 600; text-transform: uppercase; margin-top: 4px; }
+.gnb { display: flex; gap: 120px; font-weight: bold; font-size: 18px; color: #333; }
+.gnb a:hover { color: #2252EE; cursor: pointer; }
+.search-area { background: rgba(0,0,0,0.08); padding: 12px 20px; border-radius: 30px; display: flex; align-items: center; width: 320px; flex-shrink: 0; }
+.search-area input { background: transparent; border: none; outline: none; width: 100%; font-size: 14px; }
+.search-area i { color: #666; font-size: 18px; }
+
+
+/* =========================================
+   3. 공지사항 상세 본문 디자인
+   ========================================= */
+.notice-detail-content {
+    width: 100%; max-width: 1200px; margin: 0 auto;
+    padding: 60px 20px 100px 20px; min-height: 800px;
+}
+
+/* 타이틀 */
+.page-title {
+    text-align: center;
+    font-size: 42px; font-weight: 800; color: #000;
+    margin-bottom: 50px; letter-spacing: -1px;
+}
+
+/* 상세 내용 박스 (테두리) */
+.detail-box {
+    border-top: 2px solid #000;
+    border-bottom: 1px solid #e0e0e0;
+    padding-bottom: 30px; 
+}
+
+/* 상세 제목 */
+.detail-title {
+    font-size: 24px; font-weight: 700; color: #000;
+    padding: 25px 0 20px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+/* 상세 정보 (등록일, 작성자 등) */
+.detail-info {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 15px 10px;
+    border-bottom: 1px solid #e0e0e0;
+    background-color: #f9f9f9;
+    font-size: 14px; color: #555;
+}
+.detail-info strong { font-weight: 600; color: #333; margin-right: 5px; }
+.detail-info .sep { display: inline-block; width: 20px; } /* 간격 */
+
+/* 본문 내용 */
+.detail-content {
+    padding: 40px 10px;
+    line-height: 1.8;
+    font-size: 16px; color: #333;
+}
+
+/* 텍스트 강조 스타일 */
+.highlight-text-orange { font-size: 20px; font-weight: 700; color: #d97706; margin-bottom: 5px; }
+.highlight-text-red { font-size: 20px; font-weight: 700; color: #ef4444; margin-bottom: 30px; }
+.app-main-feature { font-size: 16px; font-weight: 700; color: #333; margin-top: 20px; margin-bottom: 20px; }
+.section-title-green { font-size: 16px; font-weight: 700; color: #059669; margin-top: 25px; margin-bottom: 5px; }
+.conclusion-text { font-size: 16px; font-weight: 500; color: #333; margin-top: 30px; margin-bottom: 20px; }
+
+/* 리스트 스타일 */
+.detail-content ul { list-style-type: none; margin-bottom: 20px; }
+.detail-content ul li { position: relative; padding-left: 15px; font-size: 15px; color: #333; font-weight: 500; }
+.detail-content ul li::before { content: '-'; position: absolute; left: 0; color: #333; font-weight: bold; }
+
+/* 링크 스타일 */
+.detail-content a { color: #3b82f6; text-decoration: underline; display: block; margin-bottom: 5px; font-size: 15px; font-weight: 500; }
+.detail-content a:hover { color: #1d4ed8; }
+
+/* 목록 버튼 */
+.btn-list {
+    display: block; width: 150px; margin: 50px auto 0;
+    padding: 12px 0;
+    background-color: #f3f4f6; color: #333; text-align: center;
+    font-size: 16px; font-weight: 600;
+    border-radius: 4px; border: 1px solid #d1d5db;
+    transition: 0.2s;
+}
+.btn-list:hover { background-color: #e5e7eb; }
+
+
+/* 4. 푸터 디자인 (Q&A와 동일) */
+footer { background-color: #e9e9e9; padding: 40px 50px; margin: 0 -50px; margin-top: auto; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+.f-links a { font-size: 13px; margin-right: 25px; font-weight: bold; color: #555; }
+.f-sns i { margin-left: 20px; font-size: 24px; color: #777; cursor: pointer; }

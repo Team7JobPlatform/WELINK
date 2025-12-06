@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>마이페이지 - WELINK</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="mypage.css">
+    
+    <script>
+        const user = localStorage.getItem('username');
+        // if (!user) { alert("로그인이 필요한 서비스입니다."); location.href = "login.html"; }
+    </script>
+</head>
+<body>
+
+    <div class="inner">
+        <header>
+            <div class="top-bar">
+                <div class="bar-content">
+                    <a href="login.html">로그인</a><span>|</span><a href="index.html">회원가입</a><span>|</span><a href="#">고객센터</a>
+                </div>
+            </div>
+            <div class="header-content">
+                <div class="logo-area">
+                    <a href="main.html" style="display:flex; align-items:center; gap:15px; text-decoration: none;">
+                        <img src="logo.jpg" alt="로고" class="logo-img" onerror="this.style.display='none'">
+                        <span class="site-title">WELINK</span>
+                    </a>
+                </div>
+                <nav class="gnb">
+                    <a href="recruit.html">채용정보</a>
+                    <a href="welfare.html">복지정책</a>
+                    <a href="notice.html">공지사항</a>
+                </nav>
+                <div class="search-area">
+                    <input type="text" placeholder="검색어를 입력하세요.">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </header>
+
+        <main class="mypage-content">
+            
+            <h2 class="page-title">마이페이지</h2>
+
+            <input type="radio" name="tab" id="tab-default" checked>
+            <input type="radio" name="tab" id="tab1">
+            <input type="radio" name="tab" id="tab2">
+            <input type="radio" name="tab" id="tab3">
+            <input type="radio" name="tab" id="tab4">
+            <input type="radio" name="tab" id="tab5">
+
+            <div class="dashboard-box">
+                <div class="user-info-row">
+                    <div class="user-profile">
+                        <i class="fa-solid fa-circle-user"></i>
+                        <span class="user-type">개인회원</span>
+                        <span class="divider">|</span>
+                        <span class="user-email" id="userEmail">abcd91sj@gmail.com</span> 
+                    </div>
+                    <button class="edit-btn">정보수정</button>
+                </div>
+
+                <div class="stats-container">
+                    <div class="stats-group">
+                        <h4>취업활동</h4>
+                        <div class="circles">
+                            <label for="tab1" class="circle-item btn-resume">
+                                <div class="circle">5</div><p>이력서</p>
+                            </label>
+                            <label for="tab2" class="circle-item btn-interest">
+                                <div class="circle">5</div><p>관심기업</p>
+                            </label>
+                            <label for="tab3" class="circle-item btn-recommend">
+                                <div class="circle">5</div><p>기업추천</p>
+                            </label>
+                        </div>
+                    </div>
+                    <div class="vertical-line"></div>
+                    <div class="stats-group">
+                        <h4>취업준비</h4>
+                        <div class="circles">
+                            <label for="tab4" class="circle-item btn-filter">
+                                <div class="circle">0</div><p>복지 선호도</p>
+                            </label>
+                            <label for="tab5" class="circle-item btn-qna">
+                                <div class="circle">1</div><p>1:1 문의</p>
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+
+                <div class="tab-content content-default">
+                    <h3>추천정보</h3>
+                    <hr class="section-line">
+                    <div class="recommend-grid">
+                        <div class="rec-card"><div class="poster-box">경기도</div><p>[경기도]경기청년 역량강화 기회 지원 사업</p></div>
+                        <div class="rec-card"><div class="poster-box">경기도</div><p>[경기도]청년 면접수당 2차 모집 공고</p></div>
+                        <div class="rec-card"><div class="poster-box">서울시</div><p>[서울시]청년 대중교통비 지원사업</p></div>
+                        <div class="rec-card"><div class="poster-box">인천시</div><p>[인천]드림체크카드 구직활동 지원금</p></div>
+                    </div>
+                    <div class="pagination-simple">
+                        <a href="#"><</a><a href="#" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">></a>
+                    </div>
+                </div>
+
+                <div class="tab-content content-resume">
+                    <h3>이력서 관리</h3>
+                    <hr class="section-line">
+                    <div class="resume-list">
+                        <div class="resume-card">
+                            <h4>일반형[대표이력서] 이력서</h4>
+                            <ul><li>인턴직 | 3000 만원 이하 | 대졸(4년)</li><li>교육·법률·사회복지 > 대학 교육 조교(TA)</li></ul>
+                            <div class="card-btns"><button>수정</button><button>복사</button><button class="del">삭제</button></div>
+                        </div>
+                        <div class="resume-card">
+                            <h4>경력기술서_백엔드_최종</h4>
+                            <ul><li>정규직 | 3500 만원 이상 | 대졸(4년)</li><li>IT·개발·데이터 > 백엔드 개발자 (Java)</li></ul>
+                            <div class="card-btns"><button>수정</button><button>복사</button><button class="del">삭제</button></div>
+                        </div>
+                        <div class="resume-card">
+                            <h4>영문 이력서 (Resume)</h4>
+                            <ul><li>해외취업 | 면접 협의 | 대졸(4년)</li><li>무역·해외영업 > 해외영업원</li></ul>
+                            <div class="card-btns"><button>수정</button><button>복사</button><button class="del">삭제</button></div>
+                        </div>
+                        <div class="resume-card">
+                            <h4>마케팅 포트폴리오 첨부용</h4>
+                            <ul><li>계약직 | 2800 만원 | 초대졸</li><li>마케팅·광고·홍보 > 마케팅 기획</li></ul>
+                            <div class="card-btns"><button>수정</button><button>복사</button><button class="del">삭제</button></div>
+                        </div>
+                        <div class="resume-card">
+                            <h4>2025 상반기 공채 지원용</h4>
+                            <ul><li>신입/경력 | 회사내규 | 대졸(4년)</li><li>경영·사무 > 기획·전략</li></ul>
+                            <div class="card-btns"><button>수정</button><button>복사</button><button class="del">삭제</button></div>
+                        </div>
+                    </div>
+                    <div class="btn-add-area"><button class="btn-add-resume">이력서 작성</button></div>
+                    <div class="pagination-simple">
+                        <a href="#"><</a><a href="#" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">></a>
+                    </div>
+                </div>
+
+                <div class="tab-content content-interest">
+                    <h3>관심기업</h3>
+                    <hr class="section-line">
+                    <div class="interest-list">
+                        <div class="interest-card">
+                            <div class="comp-logo"><img src="logo_coupang.png" alt="쿠팡"></div>
+                            <div class="comp-info"><h4>쿠팡(주)</h4><p>현재 채용중 121건</p></div>
+                            <div class="comp-desc">#프리한 복장 가능 #자유로운 연차</div>
+                            <div class="comp-like"><i class="fa-solid fa-heart"></i> 827</div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="comp-logo"><img src="hyundai.png" alt="현대"></div>
+                            <div class="comp-info"><h4>현대자동차(주)</h4><p>현재 채용중 15건</p></div>
+                            <div class="comp-desc">#대기업 #복지 최상 #성과급</div>
+                            <div class="comp-like"><i class="fa-solid fa-heart"></i> 1,204</div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="comp-logo"><img src="logo_saramin.png" alt="사람인"></div>
+                            <div class="comp-info"><h4>(주)사람인HR</h4><p>현재 채용중 5건</p></div>
+                            <div class="comp-desc">#워라밸 #간식무제한</div>
+                            <div class="comp-like"><i class="fa-solid fa-heart"></i> 542</div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="comp-logo"><img src="logo_mobis.png" alt="모비스"></div>
+                            <div class="comp-info"><h4>현대모비스(주)</h4><p>현재 채용중 22건</p></div>
+                            <div class="comp-desc">#글로벌 #R&D #재택근무</div>
+                            <div class="comp-like"><i class="fa-solid fa-heart"></i> 980</div>
+                        </div>
+                        <div class="interest-card">
+                            <div class="comp-logo"><img src="logo_coupang.png" alt="쿠팡"></div>
+                            <div class="comp-info"><h4>쿠팡풀필먼트</h4><p>현재 채용중 40건</p></div>
+                            <div class="comp-desc">#물류 #성장가능성</div>
+                            <div class="comp-like"><i class="fa-solid fa-heart"></i> 320</div>
+                        </div>
+                    </div>
+                    <div class="pagination-simple">
+                        <a href="#"><</a><a href="#" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">></a>
+                    </div>
+                </div>
+
+                <div class="tab-content content-recommend">
+                    <h3>기업추천</h3>
+                    <hr class="section-line">
+                    <table class="comp-rec-table">
+                        <thead>
+                            <tr><th>기업</th><th>채용공고</th><th>제의일</th><th>관리</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>(주)농협</td><td class="subject">2025 농림어업총조사 조사요원 채용 모집공고</td><td>2025.11.17</td><td><button class="btn-apply">지원하기</button></td></tr>
+                            <tr><td>삼성전자</td><td class="subject">DS부문 공정설계 신입사원 수시채용</td><td>2025.11.16</td><td><button class="btn-apply">지원하기</button></td></tr>
+                            <tr><td>CJ올리브영</td><td class="subject">MD/마케팅 부문 채용연계형 인턴 모집</td><td>2025.11.15</td><td><button class="btn-apply">지원하기</button></td></tr>
+                            <tr><td>카카오</td><td class="subject">카카오톡 서버 개발자 영입 (3년 이상)</td><td>2025.11.14</td><td><button class="btn-apply">지원하기</button></td></tr>
+                            <tr><td>LG에너지</td><td class="subject">배터리 연구개발 R&D 석박사 산학장학생</td><td>2025.11.10</td><td><button class="btn-apply">지원하기</button></td></tr>
+                        </tbody>
+                    </table>
+                    <div class="pagination-simple">
+                        <a href="#"><</a><a href="#" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">></a>
+                    </div>
+                </div>
+
+                <div class="tab-content content-filter">
+                    <h3>복지 선호도 설정</h3>
+                    <hr class="section-line">
+                    <div class="welfare-table-box">
+                        
+                        <div class="welfare-row">
+                            <div class="w-category">근무환경</div>
+                            <div class="w-items">
+                                <div class="w-item"><span>재택근무</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>유연근무제</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>주 4.5일, 4일제</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>자유로운 연차</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>야근없음</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                            </div>
+                        </div>
+
+                        <div class="welfare-row">
+                            <div class="w-category">보상 및 금융</div>
+                            <div class="w-items">
+                                <div class="w-item"><span>성과급</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>보너스</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>스톡옵션</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>식대 지원</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>복지 포인트</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                            </div>
+                        </div>
+
+                        <div class="welfare-row">
+                            <div class="w-category">생활 및 편의</div>
+                            <div class="w-items">
+                                <div class="w-item"><span>최신장비 지원</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>스낵바</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>주거지원</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>휴게실/안마의자</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>통근버스</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                            </div>
+                        </div>
+
+                        <div class="welfare-row">
+                            <div class="w-category">성장 및 문화</div>
+                            <div class="w-items">
+                                <div class="w-item"><span>교육비</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>도서구입비</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>수평적 문화</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>동호회 지원</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>세미나</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                            </div>
+                        </div>
+
+                        <div class="welfare-row last">
+                            <div class="w-category">건강 및 가족</div>
+                            <div class="w-items">
+                                <div class="w-item"><span>건강검진 지원</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>육아휴직</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>단축근무</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>아이돌봄 지원</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                                <div class="w-item"><span>경조사 지원</span> <div class="stars" onclick="setStar(this)"><i>★</i><i>★</i><i>★</i><i>★</i><i>★</i></div></div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="btn-save-area" style="text-align: center; margin-top: 30px;">
+                        
+                        <button onclick="saveWelfare()" style="padding: 12px 50px; background: #2252EE; color: white; border: none; border-radius: 5px; font-weight: bold; font-size:16px; cursor: pointer;">저장하기</button>
+                    </div>
+                </div>
+
+                <div class="tab-content content-qna">
+                    <h3>1:1 문의 내역</h3>
+                    <hr class="section-line">
+                    <div class="empty-qna">
+                        <p>문의하신 내역이 없습니다.</p>
+                        <button class="btn-go-qna" onclick="location.href='qna.html'">문의하러 가기</button>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="f-links"><a href="#">개인정보처리방침</a><a href="#">영상정보처리기기운영방침</a><a href="#">이용약관</a><a href="#">API신청</a></div>
+                <div class="f-sns"><i class="fa-brands fa-facebook"></i><i class="fa-brands fa-instagram"></i><i class="fa-brands fa-youtube"></i></div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="common.js"></script> <script>
+        // 1. 아이디 표시 기능
+        const userId = localStorage.getItem('username');
+        if(userId) {
+            document.getElementById('userEmail').innerText = userId;
+        }
+
+        // ★ [여기에 setStar 함수가 들어있습니다!]
+        // 따로 파일을 안 만들어도 이 자리에 있으면 작동합니다.
+        function setStar(container) {
+            const stars = container.querySelectorAll('i');
+            
+            stars.forEach((star, index) => {
+                star.onclick = function(e) {
+                    e.stopPropagation(); 
+                    for(let i=0; i<stars.length; i++) {
+                        if(i <= index) {
+                            stars[i].classList.add('active');
+                        } else {
+                            stars[i].classList.remove('active');
+                        }
+                    }
+                }
+            });
+        }
+        function saveWelfare() {
+            // 나중에 서버(Java)가 생기면 여기서 데이터를 전송합니다.
+            // 지금은 저장되었다는 알림만 띄웁니다.
+            alert("복지 선호도 설정이 성공적으로 저장되었습니다!");
+            
+            // (선택사항) 저장이 완료된 느낌을 주기 위해 페이지를 새로고침 하려면 아래 주석 해제
+            // location.reload(); 
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELINK - 복지정책</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="welfare.css">
+</head>
+
+<body>
+
+    <div class="inner">
+
+        <header>
+            <div class="top-bar">
+                <div class="bar-content">
+                    <a href="login.html">로그인</a>
+                    <span class="divider">|</span>
+                    <a href="index.html">회원가입</a>
+                    <span class="divider">|</span>
+                    <a href="#">고객센터</a>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="logo-area">
+                    <a href="main.html" style="display:flex; align-items:center; gap:15px; text-decoration: none;">
+                        <img src="logo.jpg" alt="을지대학교 로고" class="logo-img">
+                        <span class="site-title">WELINK</span>
+                    </a>
+                </div>
+
+                <nav class="gnb">
+                    <a href="recruit.html">채용정보</a>
+                    <a href="welfare.html" class="active-page">복지정책</a>
+                    <a href="notice.html">공지사항</a>
+                </nav>
+
+                <div class="search-area">
+                    <input type="text" placeholder="검색어를 입력하세요.">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </header>
+
+        <main class="welfare-content">
+
+            <div class="clean-banner">
+                <div class="txt-area">
+                    <h1>복지정책</h1>
+                    <p>앞으로 근무할 기업은 어떤 모습일까 궁금하시죠?<br>
+                        <strong>나에게 딱 맞는 청년 정책을 찾아보세요.</strong>
+                    </p>
+
+                    <div class="search-bar-styled">
+                        <input type="text" placeholder="기업명이나 정책을 검색해보세요">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+                <div class="img-area">
+                    <img src="background.png" alt="일러스트">
+                </div>
+            </div>
+
+            <div class="list-container">
+
+                <div class="list-header">
+                    <h2>전체 복지정책</h2>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="left-tags">
+                        <span class="label">추천태그</span>
+                        <button class="pill-btn">#워라밸</button>
+                        <button class="pill-btn">#자유로운 출근</button>
+                        <button class="pill-btn">#커리어 발전</button>
+                        <button class="pill-btn">#복지포인트</button>
+                    </div>
+                    <div class="right-sort">
+                        <select>
+                            <option>최신순</option>
+                            <option>인기순</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="policy-cards">
+
+                    <a href="welfare_detail.html" class="card-row">
+                        <div class="card-logo">
+                            <img src="hyundai.png" alt="현대자동차">
+                        </div>
+                        <div class="card-info">
+                            <h3>현대자동차(주)</h3>
+                            <div class="card-desc">#편리한 복장 #정시퇴근 #커리어 발전 기회</div>
+                            <div class="card-status">현재 모집중 <span class="highlight">6건</span></div>
+                        </div>
+                        <div class="view-btn-area">
+                            <span class="view-btn">자세히 보기</span>
+                        </div>
+                    </a>
+
+                    <a href="welfare_detail.html" class="card-row">
+                        <div class="card-logo">
+                            <img src="logo_saramin.png" alt="사람인">
+                        </div>
+                        <div class="card-info">
+                            <h3>(주)사람인에이치알</h3>
+                            <div class="card-desc">#자율출근 #수평적 문화 #간식무제한</div>
+                            <div class="card-status">상시 모집중 <span class="highlight">채용시 마감</span></div>
+                        </div>
+                        <div class="view-btn-area">
+                            <span class="view-btn">자세히 보기</span>
+                        </div>
+                    </a>
+
+                    <a href="welfare_detail.html" class="card-row">
+                        <div class="card-logo">
+                            <img src="logo_mobis.png" alt="현대모비스">
+                        </div>
+                        <div class="card-info">
+                            <h3>현대모비스(주)</h3>
+                            <div class="card-desc">#대기업 #성과급 #글로벌 인재 #R&D</div>
+                            <div class="card-status">마감 임박 <span class="highlight">D-5</span></div>
+                        </div>
+                        <div class="view-btn-area">
+                            <span class="view-btn">자세히 보기</span>
+                        </div>
+                    </a>
+
+                    <a href="welfare_detail.html" class="card-row">
+                        <div class="card-logo">
+                            <img src="logo_coupang.png" alt="쿠팡">
+                        </div>
+                        <div class="card-info">
+                            <h3>쿠팡(주)</h3>
+                            <div class="card-desc">#유니콘 #개발자천국 #재택근무 #스톡옵션</div>
+                            <div class="card-status">상시 모집 <span class="highlight">Tech직군</span></div>
+                        </div>
+                        <div class="view-btn-area">
+                            <span class="view-btn">자세히 보기</span>
+                        </div>
+                    </a>
+
+                </div>
+
+                <div class="pagination-simple">
+                    <a href="#" class="back-btn">
+                        << /a>
+                            <a href="#" class="active">1</a>
+                            <a href="#">2</a>
+                            <a href="#">3</a>
+                            <a href="#">4</a>
+                            <a href="#">5</a>
+                            <a href="#" class="next-btn"> ></a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="f-links"><a href="#">개인정보처리방침</a><a href="#">영상정보처리기기운영방침</a><a href="#">이용약관</a><a
+                        href="#">API신청</a></div>
+                <div class="f-sns"><i class="fa-brands fa-facebook"></i><i class="fa-brands fa-instagram"></i><i
+                        class="fa-brands fa-youtube"></i></div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="common.js"></script>
+</body>
+
+</html>

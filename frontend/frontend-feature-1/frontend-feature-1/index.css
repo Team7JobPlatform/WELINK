@@ -1,0 +1,202 @@
+/* step1.css */
+
+/* 초기화 */
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Pretendard', sans-serif; }
+body { background-color: #f9f9f9; display: flex; justify-content: center; min-height: 100vh; padding-top: 50px; padding-bottom: 50px;}
+
+/* 전체 래퍼 */
+.wrapper {
+    width: 1440px;
+    background-color: white;
+    padding: 150px 300px;
+    border-radius: 10px;
+    text-align: center;
+    /* 그림자 살짝 추가해서 박스 느낌 살림 */
+    box-shadow: 0 5px 20px rgba(0,0,0,0.03); 
+}
+
+/* 1. 헤더 (로고) */
+header { margin-bottom: 40px; }
+.logo {
+    font-size: 40px;
+    font-weight: 900;
+    color: #2252EE;      /* 파란색 */
+    letter-spacing: -1px;
+    margin: 0;
+}
+
+/* 2. 타이틀 */
+.page-title { margin-bottom: 40px; }
+.page-title h2 { font-size: 24px; font-weight: 800; margin-bottom: 8px; color: #222; }
+.page-title p { font-size: 13px; color: #999; }
+
+/* 3. 단계 표시 (Stepper) - 여기가 깨졌던 부분! */
+.stepper {
+    display: flex; 
+    justify-content: center; 
+    margin-bottom: 50px;
+    position: relative; 
+    width: 240px; 
+    margin-left: auto; 
+    margin-right: auto;
+}
+.stepper-line {
+    position: absolute; top: 12px; left: 30px; right: 30px;
+    height: 2px; background-color: #eee; z-index: 0;
+}
+.step-list { 
+    display: flex; 
+    justify-content: space-between; 
+    width: 100%; 
+    position: relative; 
+    z-index: 1; 
+}
+.step-item { 
+    text-align: center; 
+    width: 70px; /* 너비 확보 */
+    background-color: white; 
+}
+
+.step-circle {
+    width: 35px; height: 35px; border-radius: 50%;
+    border: 2px solid #ddd; background-color: white;
+    margin: 0 auto 8px;
+    display: flex; justify-content: center; align-items: center;
+}
+.step-text { font-size: 16px; font-weight: 700; line-height: 1.3; color: #ccc; }
+
+/* STEP 1 활성화 (이중 원 디자인) */
+.step-item.active .step-circle {
+    border-color: #93DFDD; /* 민트색 테두리 */
+    position: relative;
+}
+.step-item.active .step-circle::after {
+    content: ''; 
+    position: absolute; 
+    width: 15px; height: 15px; 
+    background-color: #93DFDD; 
+    border-radius: 50%;
+}
+.step-item.active .step-text { color: #93DFDD; }
+
+/* STEP 2 대기 */
+.step-item:not(.active) .step-text { color: #333; }
+
+
+/* 4. 약관 동의 폼 */
+.agreement-form { text-align: left; }
+
+.check-all-container { margin-bottom: 22px; display: flex; align-items: center; }
+.check-all-container input { margin-right: 8px; width: 22px; height: 22px; accent-color: #333; }
+.check-all-container label { font-weight: 800; font-size: 18px; cursor: pointer;  }
+
+/* 1. 약관 박스 테두리 */
+.terms-box {
+    border: 1px solid #ddd;  /* 회색 테두리 */
+    border-radius: 8px;      /* 둥근 모서리 */
+    background-color: #fff;  /* 흰색 배경 */
+    padding: 10px 0;         /* 박스 위아래 여백 */
+    margin-bottom: 30px;     /* 다음 버튼과의 간격 */
+}
+
+/* 2. 약관 한 줄 (간격 넓게) */
+.term-item {
+    display: flex;           /* 가로 정렬 */
+    align-items: center;     /* 세로 중앙 정렬 */
+    padding: 20px 25px;      /* ★ 줄 간격을 20px로 넓혀서 시원하게 */
+    border-bottom: 1px solid #f0f0f0; /* 줄 사이 연한 선 */
+}
+
+/* 마지막 줄은 선 없애기 */
+.term-item:last-child {
+    border-bottom: none;
+}
+
+/* 3. 체크박스 크기 키우기 */
+.normal-check {
+    width: 22px;   /* ★ 체크박스 너비 키움 */
+    height: 22px;  /* ★ 체크박스 높이 키움 */
+    cursor: pointer;
+    margin-right: 12px; /* 글자와의 간격 */
+}
+
+/* 4. 글자 크기 키우기 (핵심) */
+.term-item label {
+    font-size: 18px;     /* ★ 글자 크기 18px로 확대 (기본 14~16px보다 큼) */
+    color: #333;         /* 진한 회색 */
+    cursor: pointer;     /* 마우스 올리면 손가락 모양 */
+}
+
+/* [필수] 빨간색 강조 */
+.req {
+    color: #F5936E;
+    font-weight: 500;
+    margin-right: 4px;
+}
+
+/* [선택] 파란색 강조 */
+.opt {
+    color: #93DFDD;
+    font-weight: 500;
+    margin-right: 4px;
+}
+
+.check-all-container input[type="checkbox"],
+.normal-check {
+    appearance: none;
+    -webkit-appearance: none;
+
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ddd;    /* 기본: 연한 회색 테두리 */
+    background-color: #fff;    /* 배경: 흰색 */
+    border-radius: 4px;        /* 약간 둥글게 */
+    cursor: pointer;
+    margin-right: 12px;
+    position: relative;
+    transition: all 0.2s;
+}
+
+/* 개별 약관 체크박스 크기 미세 조정 */
+.normal-check {
+    width: 22px;
+    height: 22px;
+}
+
+/* 마우스 올렸을 때 */
+.check-all-container input[type="checkbox"]:hover,
+.normal-check:hover {
+    border-color: #bbb;        /* 테두리 조금 진하게 */
+}
+
+/* ★ 체크되었을 때 (흰색 배경 + 회색 테두리 + 파란 V체크) */
+.check-all-container input[type="checkbox"]:checked,
+.normal-check:checked {
+    background-color: #fff;    /* 배경색 흰색 유지 */
+    border-color: #aaa;        /* 테두리는 진한 회색 (요청사항) */
+    
+    /* 파란색 V 체크 아이콘 */
+    background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='black' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");
+    
+    background-size: 95%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+/* 5. 다음단계 버튼 (선택 사항) */
+.next-btn {
+    display: block;
+    width: 50%;
+    padding: 20px;
+    font-size: 20px;     /* 버튼 글자도 크게 */
+    font-weight: 800;
+    background-color: #0088FF;
+    color: white;
+    border: none;
+    margin: 50px auto 0;
+    border-radius: 50px;
+    cursor: pointer;
+}
+.next-btn:hover {
+    background-color: #0088FF;
+    
+}

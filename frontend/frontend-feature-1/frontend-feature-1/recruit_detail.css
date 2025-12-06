@@ -1,0 +1,180 @@
+/* recruit_detail.css */
+
+/* 메인 컨텐츠 여백 */
+.detail-content {
+    padding: 50px 0 100px 0;
+    min-height: 800px;
+}
+
+/* 전체 레이아웃 (좌우 배치) */
+.detail-layout {
+    display: flex;
+    gap: 30px; /* 좌우 사이 간격 */
+    align-items: flex-start; /* 위쪽 라인 맞춤 */
+}
+
+/* --- 왼쪽: 상세 내용 --- */
+.detail-left {
+    flex: 1; /* 남은 공간 꽉 채움 */
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 40px;
+    background-color: white;
+}
+
+.detail-header {
+    border-bottom: 2px solid #333;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+}
+.detail-header .category {
+    font-size: 14px;
+    color: #666;
+    display: block;
+    margin-bottom: 10px;
+}
+.detail-header h1 {
+    font-size: 24px;
+    font-weight: bold;
+    color: #333;
+    line-height: 1.4;
+}
+
+/* 본문 내용 스타일 */
+.detail-body .section {
+    margin-bottom: 30px;
+}
+.detail-body h4 {
+    font-size: 16px;
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 10px;
+    background-color: #f9f9f9; /* 소제목 배경 살짝 회색 */
+    padding: 5px 10px;
+    border-radius: 4px;
+}
+.detail-body p, .detail-body li {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.8;
+}
+.detail-body ul {
+    padding-left: 15px;
+    list-style-type: disc; /* 점 표시 */
+    margin-bottom: 10px;
+}
+.detail-body strong {
+    display: block;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    color: #333;
+    font-size: 14px;
+}
+
+
+/* --- 오른쪽: 사이드바 --- */
+.detail-right {
+    width: 300px; /* 사이드바 너비 고정 */
+    flex-shrink: 0;
+}
+
+/* 공통 박스 스타일 */
+.sidebar-box {
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 20px;
+}
+
+/* 상단 상태 박스 (D-Day) */
+.status-box .sb-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: #666;
+}
+.status-box .d-day {
+    font-weight: bold;
+    color: #ff4d4d; /* 붉은색 */
+}
+.apply-btn {
+    width: 100%;
+    background-color: #0080ff;
+    color: white;
+    border: none;
+    padding: 15px 0;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 15px;
+}
+.apply-btn:hover { background-color: #0066cc; }
+
+/* 하단 정보 박스 */
+.info-box .info-row {
+    margin-bottom: 15px;
+}
+.info-box .info-row:last-child { margin-bottom: 0; }
+
+.info-box .label {
+    display: block;
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 5px;
+}
+.info-box .value {
+    display: block;
+    font-size: 15px;
+    font-weight: bold;
+    color: #333;
+}
+
+
+/* --- 하단 첨부파일 영역 --- */
+.file-download-box {
+    margin-top: 30px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fdfdfd; /* 아주 연한 회색 */
+    padding: 20px 30px;
+    display: flex;
+    align-items: center;
+}
+.file-label {
+    font-weight: bold;
+    color: #888;
+    margin-right: 20px;
+    font-size: 14px;
+}
+.file-link {
+    color: #333;
+    font-size: 14px;
+    text-decoration: none;
+}
+.file-link:hover { text-decoration: underline; color: #0080ff; }
+.file-link i { margin-right: 5px; color: #666; }
+
+
+/* --- 하단 버튼 (목록으로) --- */
+.btn-area {
+    margin-top: 50px;
+    text-align: center;
+}
+.back-btn {
+    display: inline-block;
+    border: 1px solid #0080ff;
+    color: #0080ff;
+    background-color: white;
+    padding: 12px 40px;
+    border-radius: 5px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s;
+}
+.back-btn:hover {
+    background-color: #0080ff;
+    color: white;
+}

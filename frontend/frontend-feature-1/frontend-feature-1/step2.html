@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeLink - 회원가입 (정보입력)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <link rel="stylesheet" href="step2.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <h1 class="logo">welink</h1>
+        </header>
+
+        <div class="page-title">
+            <h2>회원가입</h2>
+            <p>※ 14세 이상만 가입가능</p>
+        </div>
+
+        <div class="stepper">
+            <div class="stepper-line"></div>
+            <div class="step-list">
+                <div class="step-item completed">
+                    <div class="step-circle"><i class="fa-solid fa-check"></i></div>
+                    <div class="step-text">STEP1<br>약관동의</div>
+                </div>
+                
+                <div class="step-item active">
+                    <div class="step-circle"></div> 
+                    <div class="step-text">STEP2<br>정보입력</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="form-container">
+            <div class="form-header">
+                <span class="form-title">가입정보</span>
+                <span class="auth-badge"><i class="fa-solid fa-check-circle"></i> 본인인증 완료</span>
+            </div>
+
+            <form>
+                <div class="form-group">
+                    <input type="text" class="input-box" placeholder="이름을 입력하세요.">
+                </div>
+
+                <div class="form-group">
+                    <div class="flex-row">
+                        <input type="text" class="input-box flex-grow" placeholder="아이디를 입력하세요.">
+                        <span class="at-mark">@</span>
+                        <input type="text" class="input-box flex-grow">
+                        <button type="button" class="btn-small">중복확인</button>
+                    </div>
+                    <span class="warn">*아이디는 이메일 주소 형식으로 입력하셔야 합니다.</span>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="input-box" placeholder="비밀번호를 입력하세요.">
+                    <span class="warn">*비밀번호는 영문자, 숫자, 특수문자 각각 1개이상 포함하며, 8자이상 20자 이내여야 합니다.</span>
+                </div>
+
+                <div class="form-group">
+                    <input type="password" class="input-box" placeholder="위에서 입력한 비밀번호와 동일하게 입력하세요.">
+                </div>
+
+                <div class="form-group">
+                    <div class="flex-row">
+                        <input type="text" class="input-box flex-grow" placeholder="비밀번호 찾기용 이메일">
+                        <span class="at-mark">@</span>
+                        <select class="input-box flex-grow" style="color:#555;">
+                            <option>선택하세요.</option>
+                            <option>naver.com</option>
+                            <option>gmail.com</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="flex-row">
+                        <input type="text" class="input-box flex-grow" placeholder="휴대폰 번호를 입력하세요.">
+                        <button type="button" class="btn-small">인증</button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="flex-row">
+                        <input type="text" class="input-box flex-grow" placeholder="인증번호 입력">
+                        <button type="button" class="btn-small">확인</button>
+                    </div>
+                </div>
+
+                <div class="btn-wrap">
+                    <button type="button" class="btn-big btn-cancel" onclick="location.href='index.html'">취소</button>
+                    <button type="button" class="btn-big btn-confirm" onclick="alert('회원가입이 완료되었습니다!'); location.href='login.html'">회원가입</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,240 @@
+/* 기본 초기화 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    color: inherit;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+/* 1440px 컨테이너 */
+.inner {
+    width: 1440px;
+    background-color: white;
+    padding: 0 50px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    position: relative;
+    overflow: hidden; 
+}
+
+/* 1. 헤더 영역 */
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+/* 상단 로그인 바 */
+.top-bar {
+    width: 1440px;
+    margin-left: -50px;
+    padding: 0 50px;
+    height: 40px;
+    border-bottom: 1px solid #bbb; 
+    background-color: #fff;
+    display: flex; justify-content: flex-end; align-items: center;
+    font-size: 13px; color: #666;
+}
+.top-bar a { padding: 0 10px; }
+.top-bar .divider { color: #ccc; font-size: 10px; }
+
+/* 메인 헤더 */
+.header-content {
+    width: 1440px; 
+    margin-left: -50px; 
+    padding: 0 50px;    
+    height: 110px;
+    
+    border-bottom: 1px solid #bbb;
+    background-color: #fff;
+    
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+}
+
+/* 로고 영역 */
+.logo-area { 
+    display: flex; 
+    align-items: center; 
+    gap: 15px; 
+}
+.logo-img {
+    height: 80px; 
+    width: auto;  
+}
+.site-title {
+    color: #2252EE; 
+    font-size: 32px; 
+    font-weight: 600; 
+    letter-spacing: 0px; 
+    text-transform: uppercase;
+    margin-top: 4px; 
+}
+
+/* GNB 메뉴 */
+.gnb { 
+    display: flex; 
+    gap: 120px;
+    font-weight: bold; 
+    font-size: 18px; 
+    color: #333;
+}
+.gnb a:hover,
+.gnb a.active {
+    color: #2252EE !important; /* !important로 강제 적용 */
+    cursor: pointer;
+}
+
+/* 검색창 */
+.search-area {
+    background: rgba(0,0,0,0.08); 
+    padding: 12px 20px; 
+    border-radius: 30px;
+    display: flex; 
+    align-items: center; 
+    width: 320px;
+    flex-shrink: 0; 
+}
+.search-area input { background: transparent; border: none; outline: none; width: 100%; font-size: 14px; }
+.search-area i { color: #666; font-size: 18px; }
+
+
+/* 2. 상단 섹션 */
+.hero-section {
+    padding-top: 78px; padding-bottom: 40px;
+    display: flex; align-items: flex-start;
+    height: 650px;
+}
+
+/* ★ [수정] 왼쪽 메뉴 박스 (수직 중앙 정렬 + 간격 60px) */
+.left-menu {
+    width: 457px; 
+    height: 510px; /* 배너 높이와 동일하게 설정 */
+    flex-shrink: 0;
+    
+    display: flex;
+    flex-direction: column;
+    
+    /* ★ 내용물을 상자 안에서 수직 중앙 정렬 */
+    justify-content: center; 
+    
+    /* ★ 메뉴판과 파란 버튼 사이 간격 60px */
+    gap: 60px; 
+}
+
+/* 2x2 격자 레이아웃 */
+.menu-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    column-gap: 40px; 
+    row-gap: 50px; /* 메뉴 항목끼리의 위아래 간격 */
+    padding-top: 0;
+}
+
+/* 메뉴 아이템 */
+.menu-item {
+    font-size: 18px;
+    color: #333;
+    padding-bottom: 10px;
+    border-bottom: 2px solid #e0e0e0; 
+    cursor: pointer;
+}
+
+/* 파란 버튼 */
+.blue-btn {
+    width: 230px; 
+    background-color: #0080ff; color: white; border: none; 
+    padding: 20px; font-size: 16px; font-weight: bold; 
+    cursor: pointer; border-radius: 8px;
+    align-self: center; 
+}
+
+/* 메인 배너 */
+.main-banner {
+    width: 865px !important; height: 510px !important; flex-shrink: 0;
+    border-radius: 30px; position: relative; overflow: hidden; margin-left: 50px;
+}
+.slide {
+    position: absolute; width: 100%; height: 100%; top: 0; left: 0;
+    padding: 60px 50px; display: flex; flex-direction: column; justify-content: center;
+    opacity: 0; transition: opacity 1s ease-in-out;
+}
+.bg-1 { background-color: #909090; }
+.bg-2 { background-color: #a0a0b0; }
+.bg-3 { background-color: #b0b0a0; }
+.slide.active { opacity: 1; z-index: 1; }
+.slide h2 { font-size: 32px; color: white; margin-bottom: 15px; }
+.slide p { color: rgba(255,255,255,0.95); margin-bottom: 5px; font-size: 16px; }
+
+/* 퀵메뉴 */
+.quick-menu {
+    position: absolute;
+    left: 1327px; top: 170px; 
+    z-index: 999;
+    
+    width: 142px; height: 308px;
+    border-radius: 30px;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: flex; flex-direction: column; justify-content: space-evenly; align-items: center;
+    
+    padding-right: 30px; 
+}
+.q-item {
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    cursor: pointer; width: 100%; height: 33%; transition: 0.2s;
+}
+.q-item:hover {  color: #0080ff; }
+.q-item i { font-size: 32px; margin-bottom: 12px; color: #222; }
+.q-item:hover i { color: #0080ff; }
+.q-item p { font-size: 16px; font-weight: bold; color: #333; letter-spacing: -0.5px; }
+
+
+/* 3. 정보 카드 섹션 */
+.info-section { margin-top: 60px; margin-bottom: 80px; width: 100%; }
+.info-title h3 { font-size: 24px; font-weight: 900; margin-bottom: 20px; color: #000; }
+.info-container { position: relative; width: 1288px; height: 420px; }
+.bg-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; z-index: 0; }
+.blue-zone { width: 822px; height: 100%; background-color: #87CEEB; }
+.gray-zone { width: 466px; height: 100%; background-color: #e0e0e0; }
+.content-layer { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 10; display: flex; }
+.text-area { width: 250px; padding-top: 60px; padding-left: 50px; flex-shrink: 0; }
+.text-area h4 { font-size: 24px; font-weight: bold; margin-bottom: 10px; color: #333; }
+.text-area p { font-size: 14px; color: #666; cursor: pointer; }
+.cards-scroll-area { display: flex; align-items: center; gap: 20px; overflow-x: auto; padding-left: 20px; padding-right: 50px; width: 100%; scrollbar-width: none; }
+.cards-scroll-area::-webkit-scrollbar { display: none; }
+.card { background: white; width: 300px; height: 280px; padding: 30px; box-shadow: 0 10px 20px rgba(0,0,0,0.05); flex-shrink: 0; display: flex; flex-direction: column; justify-content: center; }
+.card h4 { font-size: 18px; margin-bottom: 15px; font-weight: bold; color: #222; }
+.card .status { font-size: 14px; color: #666; margin-bottom: 30px; }
+.tags li { font-size: 13px; color: #888; margin-bottom: 5px; line-height: 1.4; }
+
+/* 4. 게시판 섹션 */
+.board-section { padding: 40px 0; border-top: 1px solid #eee; }
+.board-layout { display: flex; gap: 60px; }
+.board-box { flex: 1; }
+.board-header { display: flex; justify-content: space-between; border-bottom: 2px solid #333; padding-bottom: 10px; margin-bottom: 10px; }
+.board-header h3 { font-size: 18px; font-weight: bold; }
+.board-list li { padding: 15px 0; border-bottom: 1px solid #f0f0f0; font-size: 14px; color: #444; }
+
+/* 5. 아이콘 메뉴 */
+.icon-menu-section { padding: 50px 0 80px 0; }
+.icon-grid { display: flex; justify-content: space-around; text-align: center; }
+.icon-circle { width: 90px; height: 90px; border: 2px solid #ddd; border-radius: 50%; display: flex; justify-content: center; align-items: center; margin: 0 auto 15px auto; font-size: 36px; color: #555; transition: 0.3s; }
+.icon-item:hover .icon-circle { border-color: #333; transform: scale(1.05); color: #0080ff; }
+.icon-item p { font-size: 15px; font-weight: bold; color: #333; }
+
+/* 6. 푸터 */
+footer { background-color: #e9e9e9; padding: 40px 50px; margin: 0 -50px; }
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+.f-links a { font-size: 13px; margin-right: 25px; font-weight: bold; color: #555; }
+.f-sns i { margin-left: 20px; font-size: 24px; color: #777; cursor: pointer; }

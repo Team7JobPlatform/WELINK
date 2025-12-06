@@ -1,0 +1,138 @@
+/* recruit.css */
+
+/* 1. 메인 컨텐츠 영역 */
+.recruit-content {
+    padding: 0; 
+    min-height: 100vh;
+    height: auto !important; 
+    overflow: visible !important;
+    padding-bottom: 100px; 
+}
+
+/* 2. 하늘색 박스 */
+.blue-box {
+    width: 1440px;
+    margin-left: -50px;
+    background-color: #eef6fc;
+    height: auto !important; 
+    min-height: 500px; 
+    padding: 60px 50px; 
+    box-sizing: border-box;
+    margin-bottom: 60px; 
+}
+
+/* 페이지 제목 */
+.page-title {
+    text-align: center;
+    font-size: 32px; font-weight: bold; margin-bottom: 40px; color: #333;
+}
+
+/* 큰 검색바 */
+.big-search-bar {
+    width: 100%; height: 60px; border: 1px solid #aaa; margin-bottom: 40px;
+    display: flex; align-items: center; padding: 0 25px; background-color: white;
+}
+.big-search-bar i { color: #999; margin-right: 15px; font-size: 20px; }
+.big-search-bar input { width: 100%; border: none; outline: none; font-size: 16px; }
+
+/* 3. 필터 테이블 */
+.filter-container {
+    width: 100%;
+    border: 1px solid #ccc;
+    background-color: white;
+    height: auto !important; 
+}
+
+/* 탭 헤더 */
+.filter-tabs { display: flex; background-color: #fff; border-bottom: 1px solid #ccc; }
+.tab-btn { width: 20%; padding: 20px 0; text-align: center; font-weight: bold; cursor: pointer; border-right: 1px solid #eee; background-color: white; transition: 0.2s; font-size: 16px; }
+.tab-btn:hover { background-color: #f9f9f9; }
+.tab-btn.active { background-color: #444b5e; color: white; }
+.tab-empty { flex-grow: 1; background-color: #eee; border-bottom: 1px solid #ccc; }
+
+/* 탭 내용 */
+.tab-body { 
+    padding: 0; 
+    min-height: 0;
+    background-color: white; 
+    height: auto !important;
+}
+.tab-content { display: none; }
+.tab-content.active { display: block; }
+
+/* 그리드 */
+.grid-5 { display: grid; grid-template-columns: repeat(5, 1fr); width: 100%; }
+.item { padding: 15px 20px; border-right: 1px solid #f0f0f0; border-bottom: 1px solid #f0f0f0; font-size: 14px; cursor: pointer; color: #555; }
+.item:hover { background-color: #f0f8ff; color: #0080ff; font-weight: bold; }
+.item.selected { background-color: #e6f3ff; color: #0080ff; font-weight: bold; }
+
+/* 하단 검색 버튼 영역 */
+.filter-bottom {
+    background-color: transparent;
+    padding: 20px 25px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-top: 1px solid #ddd;
+    min-height: 80px;
+}
+
+/* 선택된 키워드 태그 */
+.selected-keywords { display: flex; gap: 10px; flex-wrap: wrap; justify-content: flex-start; flex-grow: 1; margin-right: 20px; }
+.keyword-tag { background-color: #fff; border: 1px solid #0080ff; color: #0080ff; padding: 6px 15px; border-radius: 20px; font-size: 13px; font-weight: bold; cursor: pointer; display: flex; align-items: center; box-shadow: 0 2px 5px rgba(0,0,0,0.05); }
+.keyword-tag::after { content: '✕'; font-size: 10px; margin-left: 8px; }
+
+/* 검색 버튼 */
+.search-btn { background-color: #dcdcdc; border: 1px solid #bbb; padding: 12px 30px; font-weight: bold; cursor: pointer; font-size: 15px; border-radius: 3px; }
+.search-btn:hover { background-color: #ccc; }
+
+
+/* 4. 카드 리스트 */
+.job-list-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 25px;
+    height: auto !important;
+    overflow: visible !important;
+}
+
+.job-card { 
+    display: block;
+    text-decoration: none;
+    color: inherit;
+    border: 1px solid #e0e0e0; 
+    padding: 25px 20px; 
+    border-radius: 8px; 
+    background: white; 
+    transition: 0.3s; 
+    cursor: pointer;
+}
+.job-card:hover { border-color: #0080ff; box-shadow: 0 5px 15px rgba(0,0,0,0.05); transform: translateY(-5px); }
+
+/* 뱃지 (지역) */
+.badge { display: inline-block; font-size: 13px; margin-bottom: 10px; font-weight: bold; color: #333; }
+.badge.red::before { content: '📍 '; color: #ff4d4d; margin-right: 3px;}
+
+/* 회사명 (파란색) */
+.job-card h4 { font-size: 14px; margin-bottom: 8px; color: #0080ff; font-weight: bold; }
+
+/* 공고 제목 */
+.job-card p { 
+    font-size: 16px; color: #222; margin-bottom: 20px; font-weight: bold;
+    line-height: 1.4; height: 44px; overflow: hidden; 
+    display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; 
+}
+
+/* 날짜 정보 */
+.job-card .info { font-size: 13px; color: #666; margin-bottom: 15px; font-weight: 500; }
+
+/* ★ [수정] 하단 카테고리 (구분선 추가됨) */
+.job-card .sub { 
+    font-size: 13px; 
+    color: #888; 
+    
+    /* 여기에 구분선을 넣었습니다 */
+    border-top: 1px solid #eee; 
+    padding-top: 15px; 
+    margin-top: 15px;
+}

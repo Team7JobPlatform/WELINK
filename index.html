@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WeLink - 회원가입 (약관동의)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+
+    <div class="wrapper">
+        <header>
+            <h1 class="logo">WELINK</h1>
+        </header>
+
+        <div class="page-title">
+            <h2>회원가입</h2>
+            <p>※ 14세 이상만 가입가능</p>
+        </div>
+
+        <div class="stepper">
+            <div class="stepper-line"></div>
+            <div class="step-list">
+                <div class="step-item active">
+                    <div class="step-circle"></div> <div class="step-text">STEP1<br>약관동의</div>
+                </div>
+                <div class="step-item">
+                    <div class="step-circle"></div>
+                    <div class="step-text">STEP2<br>정보입력</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="agreement-form">
+            <div class="check-all-container">
+                <input type="checkbox" id="checkAll">
+                <label for="checkAll">약관 전체 동의</label>
+            </div>
+
+            <div class="terms-box">
+                <div class="term-item">
+                    <input type="checkbox" id="term1" class="normal-check required">
+                    <label for="term1"><span class="req">[필수]</span> 이용약관 동의</label>
+                </div>
+                <div class="term-item">
+                    <input type="checkbox" id="term2" class="normal-check required">
+                    <label for="term2"><span class="req">[필수]</span> 개인 정보 수집 및 이용 동의</label>
+                </div>
+                <div class="term-item">
+                    <input type="checkbox" id="term3" class="normal-check">
+                    <label for="term3"><span class="opt">[선택]</span> 개인정보 수집 및 이용 동의</label>
+                </div>
+                <div class="term-item">
+                    <input type="checkbox" id="term4" class="normal-check">
+                    <label for="term4"><span class="opt">[선택]</span> 위치정보 이용약관 동의</label>
+                </div>
+                <div class="term-item">
+                    <input type="checkbox" id="term5" class="normal-check">
+                    <label for="term5"><span class="opt">[선택]</span> 마케팅 수신 동의</label>
+                </div>
+                <div class="term-item">
+                    <input type="checkbox" id="term6" class="normal-check">
+                    <label for="term6"><span class="opt">[선택]</span> 개인정보 위탁 동의</label>
+                </div>
+            </div>
+
+            <button class="next-btn" onclick="location.href='step2.html'">다음단계</button>
+        </div>
+
+    </div>
+
+    <script>
+        const checkAll = document.getElementById('checkAll');
+        const checkboxes = document.querySelectorAll('.normal-check');
+
+        checkAll.addEventListener('click', (e) => {
+            checkboxes.forEach((checkbox) => {
+                checkbox.checked = e.target.checked;
+            });
+        });
+
+        checkboxes.forEach((checkbox) => {
+            checkbox.addEventListener('click', () => {
+                const total = checkboxes.length;
+                const checked = document.querySelectorAll('.normal-check:checked').length;
+                checkAll.checked = total === checked;
+            });
+        });
+    </script>
+
+</body>
+</html>

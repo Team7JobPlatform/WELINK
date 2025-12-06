@@ -1,0 +1,166 @@
+/* notice.css - 헤더/푸터 완벽 동기화 버전 */
+
+/* =========================================
+   1. 기본 설정 (main.css와 동일한 폰트 사용)
+   ========================================= */
+* {
+    margin: 0; padding: 0; box-sizing: border-box;
+    /* ★ 중요: 메인페이지와 똑같은 폰트 설정 */
+    font-family: 'Malgun Gothic', 'Noto Sans KR', sans-serif;
+    list-style: none; text-decoration: none; color: inherit;
+}
+
+body {
+    background-color: #f5f5f5;
+    display: flex; justify-content: center; min-height: 100vh;
+}
+
+/* 1440px 메인 컨테이너 */
+.inner {
+    width: 1440px;
+    background-color: white;
+    padding: 0 50px;
+    box-shadow: 0 0 20px rgba(0,0,0,0.05);
+    position: relative;
+    overflow-x: hidden;
+}
+
+
+/* =========================================
+   2. 헤더 디자인 (main.css 코드 100% 복사)
+   ========================================= */
+header { display: flex; flex-direction: column; background: white; }
+
+/* 상단 로그인 바 */
+.top-bar {
+    width: 1440px;
+    margin-left: -50px; /* ★중요: 패딩 무시하고 꽉 차게 */
+    padding: 0 50px;
+    height: 40px;
+    border-bottom: 1px solid #bbb; /* ★중요: 메인과 같은 테두리 색상 */
+    background-color: #fff;
+    display: flex; justify-content: flex-end; align-items: center;
+    font-size: 13px; color: #666;
+}
+.top-bar a { padding: 0 10px; }
+.top-bar .divider { color: #ccc; font-size: 10px; }
+
+/* 메인 헤더 */
+.header-content {
+    width: 1440px; 
+    margin-left: -50px; 
+    padding: 0 50px;    
+    height: 110px;
+    border-bottom: 1px solid #bbb; /* ★중요: 메인과 같은 테두리 색상 */
+    background-color: #fff;
+    display: flex; justify-content: space-between; align-items: center; 
+}
+
+/* 로고 */
+.logo-area { display: flex; align-items: center; gap: 15px; }
+.logo-img { height: 80px; width: auto; }
+.site-title {
+    color: #2252EE; font-size: 32px; font-weight: 600; 
+    letter-spacing: 0px; text-transform: uppercase; margin-top: 4px; 
+}
+
+/* GNB 메뉴 */
+.gnb { display: flex; gap: 120px; font-weight: bold; font-size: 18px; color: #333; }
+.gnb a:hover { color: #2252EE !important; cursor: pointer; }
+
+/* 검색창 */
+.search-area {
+    background: rgba(0,0,0,0.08); 
+    padding: 12px 20px; 
+    border-radius: 30px;
+    display: flex; align-items: center; 
+    width: 320px; flex-shrink: 0; 
+}
+.search-area input { background: transparent; border: none; outline: none; width: 100%; font-size: 14px; }
+.search-area i { color: #666; font-size: 18px; }
+
+
+/* =========================================
+   3. 공지사항 게시판 디자인
+   ========================================= */
+.notice-content {
+    width: 100%; max-width: 1200px; margin: 0 auto;
+    padding: 60px 20px 100px 20px; min-height: 800px;
+}
+
+/* 타이틀 */
+.page-title {
+    text-align: center;
+    font-size: 42px; font-weight: 800; color: #000;
+    margin-bottom: 50px; letter-spacing: -1px;
+}
+
+/* 게시판 상단 정보 */
+.board-info {
+    display: flex; justify-content: space-between; align-items: flex-end;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #000; /* 검은색 굵은 줄 */
+    padding-bottom: 10px;
+}
+.total-count { font-size: 18px; font-weight: 700; color: #000; }
+.total-count span { font-weight: 400; font-size: 16px; margin-left: 5px; color: #555; }
+.view-select { padding: 5px 10px; font-size: 14px; border: 2px solid #000; font-weight: 500; width: 150px; }
+
+/* 게시판 테이블 */
+.notice-table { width: 100%; border-collapse: collapse; text-align: center; }
+
+/* 헤더 (하늘색 배경 - 요청 디자인 적용) */
+.notice-table thead th {
+    background-color: #aecdff; /* 하늘색 */
+    padding: 15px 0; font-size: 16px; font-weight: 600; color: #333;
+    border-bottom: 1px solid #ccc;
+}
+
+/* 행 스타일 */
+.notice-table td {
+    padding: 20px 0; font-size: 15px; color: #333;
+    border-bottom: 1px solid #e0e0e0;
+}
+.notice-table td.title {
+    text-align: left; padding-left: 30px; cursor: pointer;
+}
+.notice-table td.title:hover { text-decoration: underline; }
+
+/* ★ 중요 공지 행 (연두색 배경) */
+.notice-row {
+    background-color: #d8f5a2; /* 연두색 */
+    font-weight: 600;
+}
+.notice-badge { font-weight: 700; color: #333; }
+
+/* 페이지네이션 */
+.pagination {
+    display: flex; justify-content: center; align-items: center;
+    gap: 15px; margin-top: 40px; font-size: 14px; color: #555;
+}
+.pagination a { padding: 5px; }
+.pagination a:hover { color: #000; font-weight: 700; }
+.pagination a.active { color: #000; font-weight: 800; border-bottom: 2px solid #000; }
+
+/* 하단 검색 툴바 */
+.search-toolbar {
+    display: flex; justify-content: center; gap: 5px; margin-top: 30px;
+}
+.search-select { width: 120px; padding: 0 10px; border: 1px solid #ccc; height: 40px; background: #f9f9f9; }
+.search-input { width: 300px; padding: 0 10px; border: 1px solid #ccc; height: 40px; }
+.btn-search { background-color: #2563eb; color: #fff; padding: 0 25px; font-size: 15px; font-weight: 600; border: none; height: 40px; cursor: pointer; }
+.btn-reset { background-color: #2563eb; color: #fff; padding: 0 25px; font-size: 15px; font-weight: 600; border: none; height: 40px; cursor: pointer; }
+
+
+/* =========================================
+   4. 푸터 디자인 (main.css 코드 100% 복사)
+   ========================================= */
+footer { 
+    background-color: #e9e9e9; 
+    padding: 40px 50px; 
+    margin: 0 -50px; /* ★중요: 패딩 무시하고 꽉 차게 */
+    margin-top: auto;
+}
+.footer-content { display: flex; justify-content: space-between; align-items: center; }
+.f-links a { font-size: 13px; margin-right: 25px; font-weight: bold; color: #555; }
+.f-sns i { margin-left: 20px; font-size: 24px; color: #777; cursor: pointer; }

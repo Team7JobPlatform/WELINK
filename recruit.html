@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELINK - 일자리 채용정보</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="main.css">
+    <link rel="stylesheet" href="recruit.css">
+</head>
+<body>
+
+    <div class="inner">
+        
+        <header>
+            <div class="top-bar">
+                <div class="bar-content">
+                    <a href="login.html">로그인</a>
+                    <span class="divider">|</span>
+                    <a href="index.html">회원가입</a>
+                    <span class="divider">|</span>
+                    <a href="#">고객센터</a>
+                </div>
+            </div>
+            <div class="header-content">
+                <div class="logo-area">
+                    <a href="main.html" style="display:flex; align-items:center; gap:15px;">
+                        <img src="logo.jpg" alt="을지대학교 로고" class="logo-img">
+                        <span class="site-title">WELINK</span>
+                    </a>
+                </div>
+                <nav class="gnb">
+                    <a href="recruit.html" class="active">채용정보</a>
+                    <a href="welfare.html">복지정책</a>
+                    <a href="notice.html">공지사항</a>
+                </nav>
+                <div class="search-area">
+                    <input type="text" placeholder="검색어를 입력하세요.">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </header>
+
+        <main class="recruit-content">
+            
+            <div class="blue-box">
+                <h2 class="page-title">일자리 채용정보</h2>
+                
+                <div class="big-search-bar">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                    <input type="text" placeholder="키워드를 입력해 주세요 (예: 근무지역, 기업명 등)">
+                </div>
+
+                <div class="filter-container">
+                    <div class="filter-tabs">
+                        <div class="tab-btn active" onclick="openTab(event, 'area')">근무지역</div>
+                        <div class="tab-btn" onclick="openTab(event, 'field')">채용분야</div>
+                        <div class="tab-btn" onclick="openTab(event, 'type')">고용형태</div>
+                        <div class="tab-btn" onclick="openTab(event, 'category')">채용구분</div>
+                        <div class="tab-empty"></div>
+                    </div>
+
+                    <div class="tab-body">
+                        <div id="area" class="tab-content active">
+                            <div class="grid-5">
+                                <div class="item" onclick="toggleKeyword(this)">전체(377)</div>
+                                <div class="item" onclick="toggleKeyword(this)">서울(107)</div>
+                                <div class="item" onclick="toggleKeyword(this)">인천(23)</div>
+                                <div class="item" onclick="toggleKeyword(this)">부산(50)</div>
+                                <div class="item" onclick="toggleKeyword(this)">대구(21)</div>
+                                <div class="item" onclick="toggleKeyword(this)">대전(29)</div>
+                                <div class="item" onclick="toggleKeyword(this)">광주(29)</div>
+                                <div class="item" onclick="toggleKeyword(this)">울산(12)</div>
+                                <div class="item" onclick="toggleKeyword(this)">경기(12)</div>
+                                <div class="item" onclick="toggleKeyword(this)">강원(17)</div>
+                                <div class="item" onclick="toggleKeyword(this)">충남(17)</div>
+                                <div class="item" onclick="toggleKeyword(this)">충북(13)</div>
+                                <div class="item" onclick="toggleKeyword(this)">경남(10)</div>
+                                <div class="item" onclick="toggleKeyword(this)">전남(14)</div>
+                                <div class="item" onclick="toggleKeyword(this)">전북(11)</div>
+                                <div class="item" onclick="toggleKeyword(this)">제주(16)</div>
+                                <div class="item" onclick="toggleKeyword(this)">세종(7)</div>
+                            </div>
+                        </div>
+                        <div id="field" class="tab-content">
+                            <div class="grid-5">
+                                <div class="item" onclick="toggleKeyword(this)">사업관리 (46)</div>
+                                <div class="item" onclick="toggleKeyword(this)">회계·사무 (186)</div>
+                                <div class="item" onclick="toggleKeyword(this)">금융·보험 (8)</div>
+                                <div class="item" onclick="toggleKeyword(this)">사회과학 (84)</div>
+                                <div class="item" onclick="toggleKeyword(this)">소방·국방 (18)</div>
+                                <div class="item" onclick="toggleKeyword(this)">보건·의료 (289)</div>
+                                <div class="item" onclick="toggleKeyword(this)">영업판매 (5)</div>
+                                <div class="item" onclick="toggleKeyword(this)">건설 (21)</div>
+                                <div class="item" onclick="toggleKeyword(this)">섬유·의복 (1)</div>
+                                <div class="item" onclick="toggleKeyword(this)">에너지·안전 (76)</div>
+                                <div class="item" onclick="toggleKeyword(this)">사회복지 (40)</div>
+                                <div class="item" onclick="toggleKeyword(this)">경비·청소 (48)</div>
+                                <div class="item" onclick="toggleKeyword(this)">기계 (33)</div>
+                                <div class="item" onclick="toggleKeyword(this)">전기·전자 (53)</div>
+                                <div class="item" onclick="toggleKeyword(this)">농림어업 (21)</div>
+                                <div class="item" onclick="toggleKeyword(this)">디자인·방송 (23)</div>
+                                <div class="item" onclick="toggleKeyword(this)">오락·스포츠 (27)</div>
+                                <div class="item" onclick="toggleKeyword(this)">재료 (8)</div>
+                                <div class="item" onclick="toggleKeyword(this)">정보통신 (43)</div>
+                                <div class="item" onclick="toggleKeyword(this)">연구 (40)</div>
+                                <div class="item" onclick="toggleKeyword(this)">운전·운송 (28)</div>
+                                <div class="item" onclick="toggleKeyword(this)">음식서비스 (24)</div>
+                                <div class="item" onclick="toggleKeyword(this)">화학 (8)</div>
+                                <div class="item" onclick="toggleKeyword(this)">식품가공 (21)</div>
+                                <div class="item" onclick="toggleKeyword(this)">환경 (10)</div>
+                            </div>
+                        </div>
+                        <div id="type" class="tab-content">
+                            <div class="grid-5">
+                                <div class="item" onclick="toggleKeyword(this)">정규직(132)</div>
+                                <div class="item" onclick="toggleKeyword(this)">계약직(31)</div>
+                                <div class="item" onclick="toggleKeyword(this)">무기계약직(69)</div>
+                                <div class="item" onclick="toggleKeyword(this)">비정규직(644)</div>
+                                <div class="item" onclick="toggleKeyword(this)">청년인턴(체험)(21)</div>
+                            </div>
+                        </div>
+                        <div id="category" class="tab-content">
+                            <div class="grid-5">
+                                <div class="item" onclick="toggleKeyword(this)">신입(132)</div>
+                                <div class="item" onclick="toggleKeyword(this)">경력(31)</div>
+                                <div class="item" onclick="toggleKeyword(this)">신입+경력(669)</div>
+                                <div class="item" onclick="toggleKeyword(this)">외국인 전형(9)</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="filter-bottom">
+                        <div class="selected-keywords" id="selectedKeywords"></div>
+                        <button class="search-btn">검색하기</button>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="job-list-grid">
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+                <a href="recruit_detail.html" class="job-card"><div class="badge red">경기 군포시</div><h4>군포시청</h4><p>[군포시] 2025 농림어업총조사 조사요원 채용 모집공고</p><div class="info">D-6 ~ 2025-11-14</div><div class="sub">경력 · 학력 · 시급</div></a>
+            </div>
+
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="f-links"><a href="#">개인정보처리방침</a><a href="#">영상정보처리기기운영방침</a><a href="#">이용약관</a><a href="#">API신청</a></div>
+                <div class="f-sns"><i class="fa-brands fa-facebook"></i><i class="fa-brands fa-instagram"></i><i class="fa-brands fa-youtube"></i></div>
+            </div>
+        </footer>
+    </div>
+
+<script>
+        const API_URL = 'http://localhost:8080/api/jobs/all';
+
+        // 페이지 로드 시 데이터 로딩 시작
+        document.addEventListener('DOMContentLoaded', () => {
+            // 초기 탭 활성화 
+            document.getElementById("area").style.display = "block";
+            fetchJobPostings();
+        });
+        
+        function fetchJobPostings() {
+            const container = document.getElementById('job-list-container'); 
+            
+            fetch(API_URL)
+                .then(response => {
+                    // 403, 404, 500 등 에러 발생 시 여기서 throw
+                    if (!response.ok) throw new Error('API 통신 실패: ' + response.status);
+                    return response.json();
+                })
+                .then(postings => {
+                    container.innerHTML = ''; // 로딩 메시지 제거
+                    if (!postings || postings.length === 0) {
+                        container.innerHTML = '<p style="padding: 20px; text-align: center;">현재 등록된 채용 공고가 없습니다. 서버에서 fetch를 실행했는지 확인하세요.</p>';
+                        return;
+                    }
+
+                    postings.forEach(job => {
+                        
+                        const deadlineText = job.deadline ? job.deadline.substring(0, 4) + '.' + job.deadline.substring(4, 6) + '.' + job.deadline.substring(6, 8) : '마감일 미정';
+                        const originalTitle = job.title || '공고 제목 없음';
+                        const locationText = job.location || '위치 미정';
+                        
+                        // 제목에서 기관명과 공고 제목 분리 (첫 단어를 기관명으로 가정)
+                        const titleParts = originalTitle.split(' ');
+                        const institutionName = titleParts[0]; 
+                        const jobTitle = titleParts.slice(1).join(' ');
+
+                        const cardHTML = `
+                            <a href="${job.originalUrl}" target="_blank" class="job-card">
+                                <div class="badge red">${locationText}</div>
+                                <h4>${institutionName}</h4> 
+                                <p>${jobTitle}</p>
+                                <div class="info">~ ${deadlineText}</div>
+                                <div class="sub">OpenAPI (ID: ${job.id})</div>
+                            </a>
+                        `;
+                        container.innerHTML += cardHTML;
+                    });
+                })
+                .catch(error => {
+                    console.error('채용 공고 로딩 에러:', error);
+                    // 서버 연결 실패 메시지를 명확히 띄웁니다.
+                    container.innerHTML = '<p style="padding: 20px; color: red; text-align: center;">서버 연결 실패. (F12 콘솔에서 에러 코드 확인)</p>';
+                });
+        }
+
+        function addTag(text) {
+            const container = document.getElementById('selectedKeywords');
+            const tag = document.createElement('span');
+            tag.className = 'keyword-tag';
+            tag.innerText = text;
+            tag.onclick = function() {
+                this.remove();
+                const items = document.querySelectorAll('.item');
+                items.forEach(item => { if(item.innerText === text) item.classList.remove('selected'); });
+            };
+            container.appendChild(tag);
+        }
+
+        function removeTag(text) {
+            const tags = document.querySelectorAll('.keyword-tag');
+            tags.forEach(tag => { if (tag.innerText === text) tag.remove(); });
+        }
+    </script>
+    <script src="common.js"></script> 
+
+</body>
+</html>

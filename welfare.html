@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WELINK - 복지정책</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="welfare.css">
+</head>
+
+<body>
+
+    <div class="inner">
+
+        <header>
+            <div class="top-bar">
+                <div class="bar-content">
+                    <a href="login.html">로그인</a>
+                    <span class="divider">|</span>
+                    <a href="index.html">회원가입</a>
+                    <span class="divider">|</span>
+                    <a href="#">고객센터</a>
+                </div>
+            </div>
+
+            <div class="header-content">
+                <div class="logo-area">
+                    <a href="main.html" style="display:flex; align-items:center; gap:15px; text-decoration: none;">
+                        <img src="logo.jpg" alt="을지대학교 로고" class="logo-img">
+                        <span class="site-title">WELINK</span>
+                    </a>
+                </div>
+
+                <nav class="gnb">
+                    <a href="recruit.html">채용정보</a>
+                    <a href="welfare.html" class="active-page">복지정책</a>
+                    <a href="notice.html">공지사항</a>
+                </nav>
+
+                <div class="search-area">
+                    <input type="text" placeholder="검색어를 입력하세요.">
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </div>
+            </div>
+        </header>
+
+        <main class="welfare-content">
+
+            <div class="clean-banner">
+                <div class="txt-area">
+                    <h1>복지정책</h1>
+                    <p>앞으로 근무할 기업은 어떤 모습일까 궁금하시죠?<br>
+                        <strong>나에게 딱 맞는 청년 정책을 찾아보세요.</strong>
+                    </p>
+
+                    <div class="search-bar-styled">
+                        <input type="text" placeholder="기업명이나 정책을 검색해보세요">
+                        <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                    </div>
+                </div>
+                <div class="img-area">
+                    <img src="background.png" alt="일러스트">
+                </div>
+            </div>
+
+            <div class="list-container">
+
+                <div class="list-header">
+                    <h2>전체 복지정책 (회사별)</h2>
+                </div>
+
+                <div class="filter-bar">
+                    <div class="left-tags">
+                        <span class="label">추천태그</span>
+                        <button class="pill-btn">#워라밸</button>
+                        <button class="pill-btn">#자유로운 출근</button>
+                        <button class="pill-btn">#커리어 발전</button>
+                        <button class="pill-btn">#복지포인트</button>
+                    </div>
+                    <div class="right-sort">
+                        <select>
+                            <option>최신순</option>
+                            <option>인기순</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="policy-cards" id="policy-cards-container">
+                    <p style="padding: 20px; text-align: center;">데이터 로딩 중...</p>
+                </div>
+                <div class="pagination-simple">
+                    <a href="#" class="back-btn">
+                        << </a>
+                        <a href="#" class="active">1</a>
+                        <a href="#">2</a>
+                        <a href="#">3</a>
+                        <a href="#">4</a>
+                        <a href="#">5</a>
+                        <a href="#" class="next-btn"> ></a>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <div class="footer-content">
+                <div class="f-links"><a href="#">개인정보처리방침</a><a href="#">영상정보처리기기운영방침</a><a href="#">이용약관</a><a
+                        href="#">API신청</a></div>
+                <div class="f-sns"><i class="fa-brands fa-facebook"></i><i class="fa-brands fa-instagram"></i><i
+                        class="fa-brands fa-youtube"></i></div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="common.js"></script>
+
+    <script>
+        const WELFARE_API_URL = 'http://localhost:8080/api/welfare-items';
+
+        window.addEventListener('DOMContentLoaded', fetchWelfareCompanies);
+
+        function fetchWelfareCompanies() {
+            const container = document.getElementById('policy-cards-container');
+
+            fetch(WELFARE_API_URL)
+                .then(response => {
+                    if (!response.ok) throw new Error('API 통신 실패');
+                    return response.json();
+                })
+                .then(companies => { // API가 Company 리스트를 반환합니다.
+                    container.innerHTML = ''; // 로딩 메시지 제거
+
+                    if (companies.length === 0) {
+                        container.innerHTML = '<p style="padding: 20px; text-align: center;">현재 등록된 복지 정보가 있는 회사가 없습니다.</p>';
+                        return;
+                    }
+                    
+                    companies.forEach(company => {
+                        // CompanyWelfare 리스트에서 복지 정책 이름만 추출
+                        const welfareTags = company.companyWelfares 
+                            ? company.companyWelfares.map(cw => `#${cw.welfareItem.name}`).join(' ')
+                            : '#등록된 복지 없음';
+
+                        const cardHTML = `
+                            <a href="welfare_detail.html?companyId=${company.id}" class="card-row">
+                                <div class="card-logo">
+                                    <i class="fa-solid fa-building" style="font-size: 24px; color: #007bff;"></i>
+                                </div>
+                                <div class="card-info">
+                                    <h3>${company.name} (${company.location})</h3>
+                                    <div class="card-desc">${welfareTags}</div>
+                                    <div class="card-status">업종: ${company.industry || '미정'}</div>
+                                </div>
+                                <div class="view-btn-area">
+                                    <span class="view-btn">자세히 보기</span>
+                                </div>
+                            </a>
+                        `;
+                        container.innerHTML += cardHTML;
+                    });
+                })
+                .catch(error => {
+                    console.error('복지정책 로딩 에러:', error);
+                    container.innerHTML = '<p style="padding: 20px; color: red; text-align: center;">서버 연결 실패. 백엔드 서버 상태를 확인하세요.</p>';
+                });
+        }
+    </script>
+</body>
+
+</html>

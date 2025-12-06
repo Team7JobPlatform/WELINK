@@ -1,77 +1,16 @@
-/*
-package com.example.job.domain.user.controller;
-
-import com.example.job.domain.user.dto.*;
-import com.example.job.domain.user.entity.User;
-import com.example.job.domain.user.service.UserService;
-import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.*;
-
-@RestController                         // 사용자 관련 REST API 컨트롤러
-@RequestMapping("/api/users")           // 기본 URL: /api/users
-@RequiredArgsConstructor                // 생성자 주입 자동 생성
-public class UserController {
-
-    private final UserService userService; // 사용자 비즈니스 로직 처리 서비스
-
-    // 회원가입 API
-    // POST /api/users/signup
-    @PostMapping("/signup")
-    public ResponseEntity<Long> signup(@RequestBody SignupRequestDto dto) {
-        Long userId = userService.signup(dto); // 회원 생성 후 ID 반환
-        return ResponseEntity.ok(userId);
-    }
-
-    // 로그인 API (JWT 발급)
-    // POST /api/users/login
-    @PostMapping("/login")
-    public ResponseEntity<LoginResponseDto> login(@RequestBody LoginRequestDto dto) {
-        LoginResponseDto response = userService.login(dto); // 이메일/비밀번호 검증 + 토큰 발급
-        return ResponseEntity.ok(response);
-    }
-
-    // 프로필 조회 API
-    // GET /api/users/{userId}/profile
-    @GetMapping("/{userId}/profile")
-    public ResponseEntity<ProfileResponseDto> getProfile(@PathVariable Long userId) {
-        ProfileResponseDto response = userService.getProfile(userId); // 특정 유저 프로필 조회
-        return ResponseEntity.ok(response);
-    }
-
-    // 프로필 수정 API
-    // PUT /api/users/{userId}/profile
-    @PutMapping("/{userId}/profile")
-    public ResponseEntity<ProfileResponseDto> updateProfile(
-            @PathVariable Long userId,
-            @RequestBody ProfileUpdateRequestDto dto
-    ) {
-        ProfileResponseDto response = userService.updateProfile(userId, dto); // 프로필 정보 수정
-        return ResponseEntity.ok(response);
-    }
-
-    // 내 정보 조회 API (JWT 기반)
-    // GET /api/users/me
-    @GetMapping("/me")
-    public ResponseEntity<User> me(org.springframework.security.core.Authentication authentication) {
-        // JwtAuthenticationFilter 에서 principal 로 넣어 둔 userId 문자열 꺼내기
-        String userIdStr = (String) authentication.getPrincipal();
-        Long userId = Long.parseLong(userIdStr);
-
-        // 현재 로그인한 사용자의 엔티티 조회
-        User user = userService.getMyPage(userId);
-        return ResponseEntity.ok(user);
-    }
-}
-*/
 package com.example.job.domain.user.controller;
 
 import com.example.job.domain.user.entity.User;
 import com.example.job.domain.user.service.UserService;
+import com.example.job.config.JwtTokenProvider;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-
+import org.springframework.http.HttpStatus;
+import javax.servlet.http.HttpServletRequest; // ★ resolveToken을 위해 필수
 import java.util.Map;
+import java.util.HashMap;
+import java.util.Optional;
+import io.jsonwebtoken.JwtException; // JWT 예외 처리를 위해 필수
 
 @RestController
 @RequestMapping("/api/users")
@@ -79,9 +18,11 @@ import java.util.Map;
 public class UserController {
 
     private final UserService userService;
+    private final JwtTokenProvider jwtTokenProvider;
 
-    public UserController(UserService userService) {
+    public UserController(UserService userService, JwtTokenProvider jwtTokenProvider) {
         this.userService = userService;
+        this.jwtTokenProvider = jwtTokenProvider;
     }
 
     // [POST] /api/users/signup (회원가입)
@@ -89,7 +30,7 @@ public class UserController {
     public ResponseEntity<?> signup(@RequestBody User user) {
         try {
             User savedUser = userService.signup(user);
-            return ResponseEntity.ok("가입 성공! 환영합니다, " + savedUser.getName() + "님!");
+            return ResponseEntity.ok("가입 성공! (이름: " + savedUser.getName() + ")");
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("실패: " + e.getMessage());
         }
@@ -103,9 +44,61 @@ public class UserController {
             String password = loginData.get("password");
 
             User user = userService.login(email, password);
-            return ResponseEntity.ok("로그인 성공! 환영합니다, " + user.getName() + "님!");
+
+            // JWT 토큰 생성
+            String token = jwtTokenProvider.createToken(user.getId(), user.getEmail(), user.getRole());
+
+            // JSON 형태로 토큰과 사용자 정보를 반환
+            Map<String, Object> response = new HashMap<>();
+            response.put("token", token);
+            response.put("userName", user.getName());
+            response.put("userId", user.getId());
+
+            return ResponseEntity.ok(response);
+
         } catch (Exception e) {
             return ResponseEntity.badRequest().body("로그인 실패: " + e.getMessage());
+        }
+    }
+
+    // ★★★ [마이페이지 핵심] GET /api/users/me 엔드포인트 ★★★
+    @GetMapping("/me")
+    public ResponseEntity<?> getMyInfo(HttpServletRequest request) {
+        try {
+            // 1. 요청 헤더에서 토큰 추출
+            String token = jwtTokenProvider.resolveToken(request);
+
+            if (token == null) {
+                return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("인증 토큰이 누락되었습니다.");
+            }
+
+            // 2. 토큰에서 사용자 이메일 추출
+            String email = jwtTokenProvider.getUserEmail(token);
+
+            // 3. 이메일로 DB에서 User 엔티티 조회 (UserService의 findByEmail 사용)
+            Optional<User> userOptional = userService.findByEmail(email);
+
+            if (userOptional.isEmpty()) {
+                return ResponseEntity.status(HttpStatus.NOT_FOUND).body("사용자 정보를 찾을 수 없습니다.");
+            }
+
+            User user = userOptional.get();
+
+            // 4. 클라이언트에게 전달할 JSON 데이터 구성
+            Map<String, Object> userInfo = new HashMap<>();
+            userInfo.put("id", user.getId());
+            userInfo.put("email", user.getEmail());
+            userInfo.put("name", user.getName());
+            userInfo.put("role", user.getRole());
+
+            return ResponseEntity.ok(userInfo);
+
+        } catch (JwtException e) {
+            // 토큰 만료 또는 변조 에러
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body("토큰이 유효하지 않거나 만료되었습니다.");
+        } catch (Exception e) {
+            // 기타 DB 조회 에러 등
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("사용자 정보 로딩 중 오류 발생: " + e.getMessage());
         }
     }
 }

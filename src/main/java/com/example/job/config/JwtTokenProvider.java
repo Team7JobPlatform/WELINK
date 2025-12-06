@@ -1,3 +1,4 @@
+/*
 package com.example.job.config;
 
 import io.jsonwebtoken.Jwts;
@@ -48,4 +49,166 @@ public class JwtTokenProvider {
     public Key getKey() {
         return key;
     }
+}
+*//*
+
+package com.example.job.config;
+
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils; // resolveToken에 필요
+import javax.servlet.http.HttpServletRequest; // resolveToken에 필요
+
+import java.security.Key;
+import java.util.Date;
+
+@Component
+public class JwtTokenProvider {
+
+    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    private final long validityInMs = 60 * 60 * 1000L;
+
+    // 로그인 성공 시 JWT 생성
+    public String createToken(Long userId, String email, String role) {
+        Date now = new Date();
+        Date expiry = new Date(now.getTime() + validityInMs);
+
+        return Jwts.builder()
+                .setSubject(String.valueOf(userId))
+                .setIssuedAt(now)
+                .setExpiration(expiry)
+                .claim("email", email)
+                .claim("role", role)
+                .signWith(key)
+                .compact();
+    }
+
+    // 토큰에서 userId(subject)만 추출
+    public Long getUserIdFromToken(String token) {
+        return Long.parseLong(
+                Jwts.parserBuilder()
+                        .setSigningKey(key)
+                        .build()
+                        .parseClaimsJws(token)
+                        .getBody()
+                        .getSubject()
+        );
+    }
+
+    // ★★★ [추가] HTTP 요청 헤더에서 JWT 토큰 추출 ★★★
+    public String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
+    }
+
+    // ★★★ [추가] 토큰에서 사용자 이메일(Claim) 추출 ★★★
+    public String getUserEmail(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .get("email", String.class);
+    }
+
+    // ★★★ [추가] 토큰 유효성 검사 ★★★
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public Key getKey() {
+        return key;
+    }
+}*/
+package com.example.job.config;
+
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.Keys;
+import org.springframework.stereotype.Component;
+import org.springframework.util.StringUtils;
+import javax.servlet.http.HttpServletRequest;
+
+import java.security.Key;
+import java.util.Date;
+
+@Component
+public class JwtTokenProvider {
+
+    private final Key key = Keys.secretKeyFor(SignatureAlgorithm.HS256);
+    // ★★★ [수정 핵심] 토큰 유효 시간을 7일(168시간)로 연장합니다. (밀리초 기준) ★★★
+    private final long validityInMs = 7 * 24 * 60 * 60 * 1000L;
+
+    // 로그인 성공 시 JWT 생성
+    public String createToken(Long userId, String email, String role) {
+        Date now = new Date();
+        Date expiry = new Date(now.getTime() + validityInMs); // 7일 후 만료
+
+        return Jwts.builder()
+                .setSubject(String.valueOf(userId))
+                .setIssuedAt(now)
+                .setExpiration(expiry)
+                .claim("email", email)
+                .claim("role", role)
+                .signWith(key)
+                .compact();
+    }
+
+    // 토큰에서 userId(subject)만 추출
+    public Long getUserIdFromToken(String token) {
+        return Long.parseLong(
+                Jwts.parserBuilder()
+                        .setSigningKey(key)
+                        .build()
+                        .parseClaimsJws(token)
+                        .getBody()
+                        .getSubject()
+        );
+    }
+
+    // HTTP 요청 헤더에서 JWT 토큰 추출
+    public String resolveToken(HttpServletRequest request) {
+        String bearerToken = request.getHeader("Authorization");
+        if (StringUtils.hasText(bearerToken) && bearerToken.startsWith("Bearer ")) {
+            return bearerToken.substring(7);
+        }
+        return null;
+    }
+
+    // 토큰에서 사용자 이메일(Claim) 추출
+    public String getUserEmail(String token) {
+        return Jwts.parserBuilder()
+                .setSigningKey(key)
+                .build()
+                .parseClaimsJws(token)
+                .getBody()
+                .get("email", String.class);
+    }
+
+    // 토큰 유효성 검사
+    public boolean validateToken(String token) {
+        try {
+            Jwts.parserBuilder().setSigningKey(key).build().parseClaimsJws(token);
+            return true;
+        } catch (JwtException | IllegalArgumentException e) {
+            return false;
+        }
+    }
+
+    public Key getKey() {
+        return key;
+    }
+
 }

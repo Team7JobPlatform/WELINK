@@ -1,3 +1,4 @@
+/*
 package com.example.job.domain.company.entity;
 
 import jakarta.persistence.*;
@@ -30,4 +31,27 @@ public class WelfareItem {
     public String getCategory() { return category; }
     public String getName() { return name; }
     public String getDescription() { return description; }
+}
+*/
+package com.example.job.domain.company.entity;
+
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
+import lombok.NoArgsConstructor;
+import lombok.AllArgsConstructor;
+
+@Entity
+@Getter @Setter
+@NoArgsConstructor @AllArgsConstructor
+public class WelfareItem {
+
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    private String category;
+    private String name;
+    private String description;
+
+    // (이 파일은 순환 참조의 원인이 아니므로 깨끗하게 유지)
 }

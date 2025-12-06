@@ -1,3 +1,4 @@
+/*
 package com.example.job.domain.user.controller;
 
 import com.example.job.domain.user.dto.*;
@@ -60,5 +61,51 @@ public class UserController {
         // 현재 로그인한 사용자의 엔티티 조회
         User user = userService.getMyPage(userId);
         return ResponseEntity.ok(user);
+    }
+}
+*/
+package com.example.job.domain.user.controller;
+
+import com.example.job.domain.user.entity.User;
+import com.example.job.domain.user.service.UserService;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+
+@RestController
+@RequestMapping("/api/users")
+@CrossOrigin(originPatterns = "*", allowCredentials = "true")
+public class UserController {
+
+    private final UserService userService;
+
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    // [POST] /api/users/signup (회원가입)
+    @PostMapping("/signup")
+    public ResponseEntity<?> signup(@RequestBody User user) {
+        try {
+            User savedUser = userService.signup(user);
+            return ResponseEntity.ok("가입 성공! 환영합니다, " + savedUser.getName() + "님!");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("실패: " + e.getMessage());
+        }
+    }
+
+    // [POST] /api/users/login (로그인)
+    @PostMapping("/login")
+    public ResponseEntity<?> login(@RequestBody Map<String, String> loginData) {
+        try {
+            String email = loginData.get("email");
+            String password = loginData.get("password");
+
+            User user = userService.login(email, password);
+            return ResponseEntity.ok("로그인 성공! 환영합니다, " + user.getName() + "님!");
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body("로그인 실패: " + e.getMessage());
+        }
     }
 }

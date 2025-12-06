@@ -1,5 +1,6 @@
 package com.example.job.domain.user.controller;
 
+//import com.example.job.config.JwtTokenProvider;
 import com.example.job.config.JwtTokenProvider;
 import com.example.job.domain.user.entity.Scrap;
 import com.example.job.domain.user.service.ScrapService;

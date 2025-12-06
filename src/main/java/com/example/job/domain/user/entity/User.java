@@ -1,3 +1,4 @@
+/*
 // User.java
 package com.example.job.domain.user.entity;
 
@@ -44,4 +45,38 @@ public class User {
 
     @Column                                    // 나이 정보 (옵션)
     private Integer age;
+}
+*/
+package com.example.job.domain.user.entity;
+
+import jakarta.persistence.*;
+import lombok.*;
+
+@Entity
+@Table(name = "users")
+@Getter @Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+public class User {
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+
+    @Column(nullable = false, unique = true)
+    private String email;    // 이메일 (로그인용)
+
+    @Column(nullable = false)
+    private String password; // 비밀번호
+
+    @Column(nullable = false)
+    private String name;     // 이름
+
+    // ▼▼▼ 화면에는 있는데 자바에 없던 것들 추가! ▼▼▼
+    private String username; // 사용자 아이디 (화면의 '아이디' 칸)
+    private String phone;    // 전화번호 (화면의 '휴대폰' 칸)
+    // ▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲▲
+
+    private String role;     // 권한 (ROLE_USER)
 }

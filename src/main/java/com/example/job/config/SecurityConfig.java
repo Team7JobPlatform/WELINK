@@ -1,3 +1,4 @@
+/*
 package com.example.job.config;
 
 import org.springframework.context.annotation.Bean;
@@ -56,5 +57,37 @@ public class SecurityConfig {
 
         // 설정을 마친 후 SecurityFilterChain 객체 반환
         return http.build();
+    }
+}
+*/
+package com.example.job.config;
+
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
+
+@Configuration
+@EnableWebSecurity
+public class SecurityConfig {
+
+    @Bean
+    public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
+        http
+                .csrf(AbstractHttpConfigurer::disable) // CSRF 보호 비활성화 (테스트용)
+                .authorizeHttpRequests(auth -> auth
+                        .requestMatchers("/**").permitAll() // "/**" (모든 경로) 접속 허용
+                        .anyRequest().permitAll()           // 그 외 모든 요청도 허용
+                );
+
+        return http.build();
+    }
+        @Bean
+        public PasswordEncoder passwordEncoder() {
+            return new BCryptPasswordEncoder();
     }
 }

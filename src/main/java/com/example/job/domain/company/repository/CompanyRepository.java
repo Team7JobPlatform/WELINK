@@ -47,20 +47,21 @@ package com.example.job.domain.company.repository;
 import com.example.job.domain.company.entity.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
-import org.springframework.stereotype.Repository;
-
+import org.springframework.data.repository.query.Param;
 import java.util.List;
 
-@Repository
 public interface CompanyRepository extends JpaRepository<Company, Long> {
 
-    /**
-     * 모든 회사를 조회하며, 복지 연결 정보와 그 복지 항목까지 JOIN FETCH하여 가져옵니다.
-     * (이 쿼리가 데이터를 가져오는 핵심입니다.)
-     */
-    @Query("SELECT c FROM Company c " +
-            "LEFT JOIN FETCH c.companyWelfares cw " +
-            "LEFT JOIN FETCH cw.welfareItem wi")
+    // 1. [추천 기능용] 복지 이름으로 기업 찾기
+    @Query("SELECT DISTINCT c FROM Company c JOIN c.welfareItems w WHERE w.name LIKE CONCAT('%', :keyword, '%')")
+    List<Company> findByWelfareNameContaining(@Param("keyword") String keyword);
+
+    // 기업 이름으로 검색
+    List<Company> findByNameContaining(String keyword);
+
+    // 복지 정보까지 한 번에 가져오기 (상세 조회용)
+    @Query("SELECT DISTINCT c FROM Company c LEFT JOIN FETCH c.welfareItems")
     List<Company> findAllWithWelfareDetails();
+
     List<Company> findByLocation(String location);
 }

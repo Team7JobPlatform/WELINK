@@ -1,3 +1,4 @@
+/*
 package com.example.job.config;
 
 // 핵심 Security Imports: javax.servlet 표준 사용
@@ -61,6 +62,68 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         }
 
         // 다음 필터 또는 서블릿으로 요청 전달
+        filterChain.doFilter(request, response);
+    }
+}*/
+package com.example.job.config;
+
+// ★★★ JAKARTA 임포트 통일 (Servlet API 충돌 해결) ★★★
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.filter.OncePerRequestFilter;
+
+import java.io.IOException;
+import java.util.List;
+
+// 매 요청마다 한 번만 실행되는 JWT 인증 필터
+public class JwtAuthenticationFilter extends OncePerRequestFilter {
+
+    private final JwtTokenProvider jwtTokenProvider;
+
+    public JwtAuthenticationFilter(JwtTokenProvider jwtTokenProvider) {
+        this.jwtTokenProvider = jwtTokenProvider;
+    }
+
+    // ★★★ doFilterInternal 시그니처가 jakarta 타입과 일치하도록 최종 수정 ★★★
+    @Override
+    protected void doFilterInternal(HttpServletRequest request,
+                                    HttpServletResponse response,
+                                    FilterChain filterChain)
+            throws ServletException, IOException {
+
+        // 1. Authorization 헤더에서 토큰 추출 (JwtTokenProvider 유틸리티 사용)
+        String token = jwtTokenProvider.resolveToken(request); // 타입 충돌 해결됨
+
+        // 2. 토큰이 존재하고 유효한 경우에만 인증 처리
+        if (token != null && jwtTokenProvider.validateToken(token)) {
+            try {
+                // 토큰에서 사용자 ID 추출
+                Long userId = jwtTokenProvider.getUserIdFromToken(token);
+
+                // Authentication 객체 생성
+                Authentication authentication =
+                        new UsernamePasswordAuthenticationToken(
+                                String.valueOf(userId),
+                                null,
+                                List.of(new SimpleGrantedAuthority("ROLE_USER"))
+                        );
+
+                // Security Context에 인증 정보 설정
+                SecurityContextHolder.getContext().setAuthentication(authentication);
+
+            } catch (Exception e) {
+                // 토큰 관련 예외 처리
+                SecurityContextHolder.clearContext();
+            }
+        }
+
+        // 다음 필터로 요청 전달
         filterChain.doFilter(request, response);
     }
 }

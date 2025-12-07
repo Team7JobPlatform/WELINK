@@ -17,7 +17,7 @@ import java.util.List;
 
 @RestController                       // REST API 컨트롤러임을 표시
 @RequiredArgsConstructor              // 생성자 주입을 자동으로 생성
-@RequestMapping("/api")               // 이 컨트롤러의 기본 URL prefix: /api
+@RequestMapping("/api/mypage")               // 이 컨트롤러의 기본 URL prefix: /api
 public class MyPageController {
 
     // 회원 정보 조회를 위한 서비스
@@ -26,6 +26,7 @@ public class MyPageController {
     private final ScrapService scrapService;
     // JWT 에서 userId 를 꺼낼 때 사용하는 유틸
     private final JwtTokenProvider jwtTokenProvider;
+
 
     // 마이페이지 API: 현재 로그인한 사용자 정보 + 스크랩 목록 조회
     // GET /api/me

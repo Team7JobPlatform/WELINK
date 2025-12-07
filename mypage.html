@@ -10,17 +10,27 @@
     <link rel="stylesheet" href="main.css">
     <link rel="stylesheet" href="mypage.css">
     
-    <script>
+    <!-- <script>
         const user = localStorage.getItem('username');
         // if (!user) { alert("로그인이 필요한 서비스입니다."); location.href = "login.html"; }
+    </script> -->
+        <script>
+        // 🚨 초기 로그인 상태 검증 (페이지 로드 시)
+        // JWT (accessToken)이 없으면 로그인 페이지로 이동
+        const token = localStorage.getItem('accessToken');
+        if (!token) { 
+            alert("로그인이 필요한 서비스입니다."); 
+            location.href = "login.html"; 
+        }
     </script>
+
 </head>
 <body>
 
     <div class="inner">
         <header>
             <div class="top-bar">
-                <div class="bar-content">
+                <div class="bar-content" id="header-auth-links">
                     <a href="login.html">로그인</a><span>|</span><a href="index.html">회원가입</a><span>|</span><a href="#">고객센터</a>
                 </div>
             </div>
@@ -60,7 +70,7 @@
                         <i class="fa-solid fa-circle-user"></i>
                         <span class="user-type">개인회원</span>
                         <span class="divider">|</span>
-                        <span class="user-email" id="userEmail">abcd91sj@gmail.com</span> 
+                        <span class="user-email" id="userEmail"></span> 
                     </div>
                     <button class="edit-btn">정보수정</button>
                 </div>
@@ -73,22 +83,23 @@
                                 <div class="circle">5</div><p>이력서</p>
                             </label>
                             <label for="tab2" class="circle-item btn-interest">
-                                <div class="circle">5</div><p>관심기업</p>
+                                <div class="circle">4</div><p>관심기업</p>
                             </label>
-                            <label for="tab3" class="circle-item btn-recommend">
-                                <div class="circle">5</div><p>기업추천</p>
+                            <label for="tab3" class="circle-item">
+                                <div class="circle" id="cnt-recommend"></div><p>기업추천</p>
                             </label>
+
                         </div>
                     </div>
                     <div class="vertical-line"></div>
                     <div class="stats-group">
                         <h4>취업준비</h4>
                         <div class="circles">
-                            <label for="tab4" class="circle-item btn-filter">
-                                <div class="circle">0</div><p>복지 선호도</p>
+                            <label for="tab4" class="circle-item">
+                                <div class="circle" id="cnt-score"></div><p>복지 선호도</p>
                             </label>
                             <label for="tab5" class="circle-item btn-qna">
-                                <div class="circle">1</div><p>1:1 문의</p>
+                                <div class="circle">0</div><p>1:1 문의</p>
                             </label>
                         </div>
                     </div>
@@ -106,9 +117,9 @@
                         <div class="rec-card"><div class="poster-box">서울시</div><p>[서울시]청년 대중교통비 지원사업</p></div>
                         <div class="rec-card"><div class="poster-box">인천시</div><p>[인천]드림체크카드 구직활동 지원금</p></div>
                     </div>
-                    <div class="pagination-simple">
+                    <!-- <div class="pagination-simple">
                         <a href="#"><</a><a href="#" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">></a>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="tab-content content-resume">
@@ -142,9 +153,9 @@
                         </div>
                     </div>
                     <div class="btn-add-area"><button class="btn-add-resume">이력서 작성</button></div>
-                    <div class="pagination-simple">
+                    <!-- <div class="pagination-simple">
                         <a href="#"><</a><a href="#" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">></a>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="tab-content content-interest">
@@ -175,23 +186,23 @@
                             <div class="comp-desc">#글로벌 #R&D #재택근무</div>
                             <div class="comp-like"><i class="fa-solid fa-heart"></i> 980</div>
                         </div>
-                        <div class="interest-card">
+                        <!-- <div class="interest-card">
                             <div class="comp-logo"><img src="logo_coupang.png" alt="쿠팡"></div>
                             <div class="comp-info"><h4>쿠팡풀필먼트</h4><p>현재 채용중 40건</p></div>
                             <div class="comp-desc">#물류 #성장가능성</div>
                             <div class="comp-like"><i class="fa-solid fa-heart"></i> 320</div>
-                        </div>
+                        </div> -->
                     </div>
-                    <div class="pagination-simple">
+                    <!-- <div class="pagination-simple">
                         <a href="#"><</a><a href="#" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">></a>
-                    </div>
+                    </div> -->
                 </div>
 
                 <div class="tab-content content-recommend">
                     <h3>기업추천</h3>
                     <hr class="section-line">
                     <table class="comp-rec-table">
-                        <thead>
+                        <!-- <thead>
                             <tr><th>기업</th><th>채용공고</th><th>제의일</th><th>관리</th></tr>
                         </thead>
                         <tbody>
@@ -200,10 +211,15 @@
                             <tr><td>CJ올리브영</td><td class="subject">MD/마케팅 부문 채용연계형 인턴 모집</td><td>2025.11.15</td><td><button class="btn-apply">지원하기</button></td></tr>
                             <tr><td>카카오</td><td class="subject">카카오톡 서버 개발자 영입 (3년 이상)</td><td>2025.11.14</td><td><button class="btn-apply">지원하기</button></td></tr>
                             <tr><td>LG에너지</td><td class="subject">배터리 연구개발 R&D 석박사 산학장학생</td><td>2025.11.10</td><td><button class="btn-apply">지원하기</button></td></tr>
-                        </tbody>
+                        </tbody> -->
                     </table>
-                    <div class="pagination-simple">
-                        <a href="#"><</a><a href="#" class="active">1</a><a href="#">2</a><a href="#">3</a><a href="#">4</a><a href="#">5</a><a href="#">></a>
+                    <div id="recommendation-list" class="recommend-grid">
+                        <div class="msg-box">
+                            
+                            <p>아직 추천 결과가 없습니다.</p>
+                            <p>복지 선호도를 저장해주세요!</p>
+                            
+                        </div>
                     </div>
                 </div>
 
@@ -294,46 +310,406 @@
         </footer>
     </div>
 
-    <script src="common.js"></script> <script>
-        // 1. 아이디 표시 기능
-        const userId = localStorage.getItem('username');
-        if(userId) {
-            document.getElementById('userEmail').innerText = userId;
+    <!-- <script src="common.js"></script> <script>
+ document.addEventListener('DOMContentLoaded', () => {
+            fetchMyPageData();   // 1. 내 정보
+            fetchDashboard();    // 2. 대시보드 숫자
+            initStarRating();    // 3. 별점 기능 활성화
+        });
+
+        // [기능 1] 내 정보(이메일, 이름) 가져오기
+        function fetchMyPageData() {
+            if (!token) return;
+            fetch('http://localhost:8080/api/users/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('userEmail').textContent = data.email;
+                if (document.querySelector('.user-type')) {
+                    document.querySelector('.user-type').textContent = `${data.name}님`;
+                }
+            })
+            .catch(err => console.error("내 정보 로딩 실패", err));
         }
 
-        // ★ [여기에 setStar 함수가 들어있습니다!]
-        // 따로 파일을 안 만들어도 이 자리에 있으면 작동합니다.
+        // [기능 2] 대시보드 숫자 로딩
+        function fetchDashboard() {
+            if (!token) return;
+            fetch('http://localhost:8080/api/users/dashboard', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(stats => {
+                document.getElementById('cnt-resume').innerText = stats.resumeCount;
+                document.getElementById('cnt-interest').innerText = stats.interestCount;
+                document.getElementById('cnt-recommend').innerText = stats.recommendCount;
+                document.getElementById('cnt-score').innerText = stats.welfareScore;
+                document.getElementById('cnt-qna').innerText = stats.qnaCount;
+            })
+            .catch(err => console.error("대시보드 실패", err));
+        }
+
+        // [3] 별점 기능 (자동 실행)
+        function initStarRating() {
+            const starBoxes = document.querySelectorAll('.stars');
+            starBoxes.forEach(box => {
+                const stars = box.querySelectorAll('i');
+                stars.forEach((star, index) => {
+                    star.addEventListener('click', () => {
+                        for (let i = 0; i < stars.length; i++) {
+                            if (i <= index) stars[i].classList.add('active');
+                            else stars[i].classList.remove('active');
+                        }
+                        box.setAttribute('data-score', index + 1);
+                    });
+                });
+            });
+        }
+
+        // [4] ★ 저장 및 추천 받기 ★
+        function saveWelfare() {
+            if (!token) return alert("로그인이 필요합니다.");
+
+            // 화면 표시 변경 (로딩 중)
+            document.getElementById('tab-rec').checked = true; // 추천 탭으로 이동
+            const listContainer = document.getElementById('recommendation-list');
+            listContainer.innerHTML = '<div class="msg-box"><p>데이터 분석 및 추천 중입니다... 잠시만 기다려주세요.</p></div>';
+
+            // 데이터 수집
+            const starContainers = document.querySelectorAll('.stars');
+            let preferences = {};
+            starContainers.forEach(box => {
+                const name = box.getAttribute('data-name');
+                const score = box.getAttribute('data-score') || 0;
+                if (name) preferences[name] = parseInt(score);
+            });
+
+            console.log("전송 데이터:", preferences);
+
+            fetch('http://localhost:8080/api/users/preferences', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(preferences)
+            })
+            .then(async response => {
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(text || "서버 오류 (" + response.status + ")");
+                }
+                return response.json();
+            })
+            .then(companies => {
+                listContainer.innerHTML = ''; // 로딩 메시지 제거
+
+                if (!companies || companies.length === 0) {
+                    listContainer.innerHTML = '<div class="msg-box"><p>조건에 맞는 추천 기업이 없습니다.</p></div>';
+                    return;
+                }
+
+                companies.forEach(comp => {
+                    const html = `
+                        <div class="rec-card" style="border:1px solid #e0e0e0; padding:20px; border-radius:12px; background:white; margin-bottom:15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:10px;">
+                                <h4 style="font-size:18px; color:#2252EE; margin:0; font-weight:bold;">${comp.name}</h4>
+                                <span style="font-size:12px; color:#fff; background:#2252EE; padding:3px 8px; border-radius:20px;">추천</span>
+                            </div>
+                            <p style="font-weight:600; font-size:15px; margin-bottom:5px; color:#333;">${comp.desc}</p>
+                            <p style="color:#666; font-size:13px;">${comp.tags}</p>
+                            <button style="margin-top:15px; width:100%; padding:10px; background:#f5f5f5; color:#333; border:none; border-radius:6px; cursor:pointer; font-weight:bold;">채용공고 확인하기</button>
+                        </div>
+                    `;
+                    listContainer.innerHTML += html;
+                });
+                alert("추천이 완료되었습니다!");
+            })
+            .catch(err => {
+                console.error(err);
+                // 화면에 에러 표시
+                listContainer.innerHTML = `<div class="msg-box" style="color:red;"><p>오류가 발생했습니다.<br>${err.message}</p></div>`;
+            });
+        }
+        // 1. 페이지 로드 시 초기 데이터 가져오기
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchMyPageData();
+            fetchDashboard();
+        });
+
+        // 2. 별점 기능 함수 (HTML onclick="setStar(this)" 에서 호출됨)
+        // 전역 함수로 만들어서 HTML이 바로 찾을 수 있습니다.
         function setStar(container) {
             const stars = container.querySelectorAll('i');
             
-            stars.forEach((star, index) => {
-                star.onclick = function(e) {
-                    e.stopPropagation(); 
-                    for(let i=0; i<stars.length; i++) {
-                        if(i <= index) {
-                            stars[i].classList.add('active');
-                        } else {
-                            stars[i].classList.remove('active');
-                        }
-                    }
+            // 클릭 이벤트가 아니라, 이미 클릭된 상태에서 호출되므로 바로 처리
+            // 주의: HTML onclick에서는 event 객체를 바로 쓰기 어려우므로
+            // 클릭된 위치를 찾기 위해 다시 내부 이벤트 리스너를 쓰는 것보다
+            // event.target을 활용하거나, 간단히 로직을 바꿉니다.
+            
+            // 하지만 사용자님이 원하시는 건 "클릭하면 채워지는 것"이므로
+            // 가장 쉬운 방법은 클릭된 요소(event.target)가 몇 번째 별인지 찾는 것입니다.
+            
+            // HTML onclick에서 넘어온 event를 잡습니다.
+            const event = window.event; 
+            const targetStar = event.target;
+            
+            if (targetStar.tagName !== 'I') return; // 별이 아니면 무시
+
+            // 클릭된 별이 몇 번째인지 찾기
+            let index = -1;
+            for(let i=0; i<stars.length; i++) {
+                if(stars[i] === targetStar) {
+                    index = i;
+                    break;
                 }
+            }
+
+            // 색칠하기
+            for(let i=0; i<stars.length; i++) {
+                if(i <= index) stars[i].classList.add('active');
+                else stars[i].classList.remove('active');
+            }
+
+            // 점수 저장
+            container.setAttribute('data-score', index + 1);
+        }
+
+        // 3. 저장 및 추천 함수 (HTML onclick="saveWelfare()" 에서 호출됨)
+        function saveWelfare() {
+            if (!token) return alert("로그인이 필요합니다.");
+
+            // 별점 데이터 수집
+            const starContainers = document.querySelectorAll('.stars');
+            let preferences = {};
+
+            starContainers.forEach(box => {
+                const name = box.getAttribute('data-name');
+                const score = box.getAttribute('data-score') || 0;
+                if (name) preferences[name] = parseInt(score);
+            });
+
+            console.log("전송:", preferences);
+
+            // 서버 전송
+            fetch('http://localhost:8080/api/users/preferences', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(preferences)
+            })
+            .then(async response => {
+                if (!response.ok) {
+                    const text = await response.text();
+                    throw new Error(text || "서버 에러");
+                }
+                return response.json();
+            })
+            .then(companies => {
+                alert("저장 완료! 결과를 확인하세요.");
+                
+                // 탭 이동
+                const targetTab = document.getElementById('tab3');
+                if (targetTab) targetTab.checked = true;
+                const count = companies ? companies.length : 0;
+                const countElem = document.getElementById('cnt-recommend');
+                if(countElem) {
+                    countElem.innerText = count;
+                }
+                
+                // 결과 그리기
+                const listContainer = document.getElementById('recommendation-list');
+                listContainer.innerHTML = ''; 
+
+                if (!companies || companies.length === 0) {
+                    listContainer.innerHTML = '<div class="msg-box"><p>추천된 기업이 없습니다.</p></div>';
+                } else {
+                    companies.forEach(comp => {
+                        const html = `
+                            <div class="rec-card" style="border:1px solid #ddd; padding:20px; border-radius:10px; background:white; margin-bottom:15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                <h4 style="font-size:18px; color:#2252EE; margin:0; font-weight:bold;">${comp.name}</h4>
+                                <p style="font-weight:600; margin:10px 0;">${comp.desc}</p>
+                                <p style="color:#666; font-size:13px;">${comp.tags}</p>
+                            </div>
+                        `;
+                        listContainer.innerHTML += html;
+                    });
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("오류: " + err.message);
             });
         }
-        function checkLoginStatusAndRenderHeader() {
-    // ★★★ 읽.어.오는 키 이름 확인 ★★★
-        const token = localStorage.getItem('accessToken');
-        const userName = localStorage.getItem('userName'); // [1] 이 키 이름 확인 (userName)
-        const userId = localStorage.getItem('userId');     // [2] 이 키 이름 확인 (userId)
-    
-    // ... (이후 if (token && userName) 로직 실행)
-}
-        function saveWelfare() {
-            // 나중에 서버(Java)가 생기면 여기서 데이터를 전송합니다.
-            // 지금은 저장되었다는 알림만 띄웁니다.
-            alert("복지 선호도 설정이 성공적으로 저장되었습니다!");
+
+
+        // --- 기타 데이터 로딩 함수들 ---
+        function fetchMyPageData() {
+            if (!token) return;
+            fetch('http://localhost:8080/api/users/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('userEmail').textContent = data.email;
+                if (document.querySelector('.user-type')) {
+                    document.querySelector('.user-type').textContent = `${data.name}님`;
+                }
+            })
+            .catch(err => console.error(err));
+        }
+
+        function fetchDashboard() {
+            if (!token) return;
+            fetch('http://localhost:8080/api/users/dashboard', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(stats => {
+                if(stats) {
+                    if(document.getElementById('cnt-resume')) document.getElementById('cnt-resume').innerText = stats.resumeCount;
+                    if(document.getElementById('cnt-interest')) document.getElementById('cnt-interest').innerText = stats.interestCount;
+                    if(document.getElementById('cnt-recommend')) document.getElementById('cnt-recommend').innerText = stats.recommendCount;
+                    if(document.getElementById('cnt-score')) document.getElementById('cnt-score').innerText = stats.welfareScore;
+                    if(document.getElementById('cnt-qna')) document.getElementById('cnt-qna').innerText = stats.qnaCount;
+                }
+            })
+            .catch(err => console.error(err));
+        }
+    </script>
+</body>
+</html> -->
+<script src="common.js"></script> 
+    <script>
+        // 1. 초기 데이터 로드
+        document.addEventListener('DOMContentLoaded', () => {
+            fetchMyPageData();
+            fetchDashboard();
+        });
+
+        // 2. 내 정보 가져오기
+        function fetchMyPageData() {
+            if (!token) return;
+            fetch('http://localhost:8080/api/users/me', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(data => {
+                document.getElementById('userEmail').textContent = data.email;
+                if (document.querySelector('.user-type')) {
+                    document.querySelector('.user-type').textContent = `${data.name}님`;
+                }
+            })
+            .catch(err => console.error(err));
+        }
+
+        // 3. 대시보드 숫자 로딩
+        function fetchDashboard() {
+            if (!token) return;
+            fetch('http://localhost:8080/api/users/dashboard', {
+                headers: { 'Authorization': `Bearer ${token}` }
+            })
+            .then(res => res.json())
+            .then(stats => {
+                if(stats) {
+                    if(document.getElementById('cnt-resume')) document.getElementById('cnt-resume').innerText = stats.resumeCount;
+                    if(document.getElementById('cnt-interest')) document.getElementById('cnt-interest').innerText = stats.interestCount;
+                    if(document.getElementById('cnt-recommend')) document.getElementById('cnt-recommend').innerText = stats.recommendCount;
+                    if(document.getElementById('cnt-score')) document.getElementById('cnt-score').innerText = stats.welfareScore;
+                    if(document.getElementById('cnt-qna')) document.getElementById('cnt-qna').innerText = stats.qnaCount;
+                }
+            })
+            .catch(err => console.error(err));
+        }
+
+        // 4. 별점 기능 (onclick)
+        function setStar(container) {
+            const stars = container.querySelectorAll('i');
+            const event = window.event; 
+            const targetStar = event.target;
             
-            // (선택사항) 저장이 완료된 느낌을 주기 위해 페이지를 새로고침 하려면 아래 주석 해제
-            location.reload(); 
+            if (targetStar.tagName !== 'I') return; 
+
+            let index = -1;
+            for(let i=0; i<stars.length; i++) {
+                if(stars[i] === targetStar) { index = i; break; }
+            }
+
+            for(let i=0; i<stars.length; i++) {
+                if(i <= index) stars[i].classList.add('active');
+                else stars[i].classList.remove('active');
+            }
+            container.setAttribute('data-score', index + 1);
+        }
+
+        // 5. 저장 및 추천 기능 (onclick)
+        function saveWelfare() {
+            if (!token) return alert("로그인이 필요합니다.");
+
+            // 별점 데이터 수집
+            const starContainers = document.querySelectorAll('.stars');
+            let preferences = {};
+            starContainers.forEach(box => {
+                const name = box.getAttribute('data-name');
+                const score = box.getAttribute('data-score') || 0;
+                if (name) preferences[name] = parseInt(score);
+            });
+
+            console.log("전송:", preferences);
+
+            // 서버 전송
+            fetch('http://localhost:8080/api/users/preferences', {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`,
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(preferences)
+            })
+            .then(async response => {
+                if (!response.ok) throw new Error(await response.text());
+                return response.json();
+            })
+            .then(companies => {
+                alert("저장 완료! 추천 결과를 확인하세요.");
+                
+                // 탭 이동 (tab3 = 기업추천)
+                document.getElementById('tab3').checked = true;
+                
+                // ★ 대시보드 숫자 업데이트 ★
+                const count = companies ? companies.length : 0;
+                const countElem = document.getElementById('cnt-recommend');
+                if(countElem) countElem.innerText = count;
+                const scoreElem = document.getElementById('cnt-score');
+                if(scoreElem) scoreElem.innerText = "1";
+
+                // 결과 그리기
+                const listContainer = document.getElementById('recommendation-list');
+                listContainer.innerHTML = ''; 
+
+                if (count === 0) {
+                    listContainer.innerHTML = '<div class="msg-box"><p>조건에 맞는 기업이 없습니다.</p></div>';
+                } else {
+                    companies.forEach(comp => {
+                        // ★ 상세보기 버튼 제거됨 ★
+                        const html = `
+                            <div class="rec-card" style="border:1px solid #ddd; padding:20px; border-radius:10px; background:white; margin-bottom:15px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                                <h4 style="font-size:18px; color:#2252EE; margin:0; font-weight:bold;">${comp.name}</h4>
+                                <p style="font-weight:600; margin:10px 0;">${comp.desc}</p>
+                                <p style="color:#666; font-size:13px;">${comp.tags}</p>
+                            </div>
+                        `;
+                        listContainer.innerHTML += html;
+                    });
+                }
+            })
+            .catch(err => {
+                console.error(err);
+                alert("오류: " + err.message);
+            });
         }
     </script>
 </body>

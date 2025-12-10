@@ -139,7 +139,7 @@
                         // CompanyWelfare 리스트에서 복지 정책 이름만 추출
                         const welfareTags = company.companyWelfares 
                             ? company.companyWelfares.map(cw => `#${cw.welfareItem.name}`).join(' ')
-                            : '#등록된 복지 없음';
+                            : '';
 
                         const cardHTML = `
                             <a href="welfare_detail.html?companyId=${company.id}" class="card-row">
